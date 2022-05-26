@@ -46,6 +46,7 @@ export default function Equipment() {
 
   return (
     <div>
+      Eqipment show page
       <NavBar />
       {equipment.map((e) => {
         return (
