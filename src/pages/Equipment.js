@@ -1,4 +1,5 @@
 import React from "react";
+// import moment from "moment";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
@@ -13,20 +14,6 @@ export default function Equipment() {
   const params = useParams();
   const navigate = useNavigate();
 
-  const fetchEquipment = async () => {
-    const { data } = await axios.get(
-      `${BASE_URL}${BASE_API}/equipment/${params.id}`
-    );
-    setEquipment(data);
-  };
-
-  const fetchInspections = async () => {
-    const { data } = await axios.get(
-      `${BASE_URL}${BASE_API}/equipment/${params.id}/inspections`
-    );
-    setInspections(data);
-  };
-
   const _handleDelete = async (e) => {
     e.preventDefault();
 
@@ -40,21 +27,34 @@ export default function Equipment() {
   };
 
   useEffect(() => {
+    const fetchEquipment = async () => {
+      const { data } = await axios.get(
+        `${BASE_URL}${BASE_API}/equipment/${params.id}`
+      );
+      setEquipment(data);
+    };
+
+    const fetchInspections = async () => {
+      const { data } = await axios.get(
+        `${BASE_URL}${BASE_API}/equipment/${params.id}/inspections`
+      );
+      setInspections(data);
+    };
     fetchEquipment();
     fetchInspections();
-  }, []);
+  }, [params.id]);
 
   return (
     <div>
-      Eqipment show page
       <NavBar />
+
       {equipment.map((e) => {
         return (
           <div key={e.id}>
-            <p>{e.serial_num}</p>
-            <p>{e.manufacture_date}</p>
-            <p>{e.specification}</p>
-            <p>{e.status}</p>
+            <p>Serial num: {e.serial_num}</p>
+            <p>Manufacture date: {e.manufacture_date}</p>
+            <p>Specification: {e.specification}</p>
+            <p>Status {e.status}</p>
             {e.workers !== null ? (
               <p>
                 {e.workers.first_name} {e.workers.last_name}

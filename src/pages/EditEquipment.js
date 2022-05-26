@@ -52,6 +52,7 @@ export default function EditEquipment() {
    * Call all the state setter functions
    */
 
+  // eslint-disable-next-line
   useEffect(() => {
     fetchModels();
     fetchWorkers();
