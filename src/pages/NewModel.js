@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import NavBar from "../components/NavBar";
 import { BASE_URL, BASE_API } from "../Constants";
 
 export default function NewModel() {
@@ -42,7 +41,6 @@ export default function NewModel() {
 
   return (
     <>
-      <NavBar />
       <h1>Create model</h1>
       <form onSubmit={_handleSubmit}>
         <label>

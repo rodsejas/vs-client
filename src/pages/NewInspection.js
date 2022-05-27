@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL, BASE_API } from "../Constants";
-import NavBar from "../components/NavBar";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function NewInspection() {
@@ -53,7 +52,6 @@ export default function NewInspection() {
 
   return (
     <>
-      <NavBar />
       <form onSubmit={_handleSubmit}>
         <label>
           <p>Notes</p>
