@@ -45,11 +45,6 @@ export default function Equipment() {
 
   return (
     <div>
-<<<<<<< HEAD
-      <NavBar />
-
-=======
->>>>>>> e2894cbb91749654d5a8def2b8cfa21db85ed9b7
       {equipment.map((e) => {
         return (
           <div key={e.id}>
