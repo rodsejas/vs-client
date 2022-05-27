@@ -4,7 +4,6 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { BASE_URL, BASE_API } from "../Constants";
 import { Link } from "react-router-dom";
-import NavBar from "../components/NavBar";
 
 export default function Model() {
   const [model, setModel] = useState([]);
@@ -35,7 +34,6 @@ export default function Model() {
 
   return (
     <div>
-      <NavBar />
       {model.map((m) => {
         return (
           <div key={m.id}>

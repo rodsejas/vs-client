@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL, BASE_API } from "../Constants";
-import NavBar from "../components/NavBar";
 
 export default function EditModel() {
   const [model, setModel] = useState({});
@@ -45,7 +44,6 @@ export default function EditModel() {
 
   return (
     <>
-      <NavBar />
       <h1>Edit model</h1>
       <form onSubmit={_handleSubmit}>
         <label>

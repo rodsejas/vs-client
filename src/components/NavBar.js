@@ -1,7 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { supabase } from "../supabase";
 
-export default function NavBar() {
+export default function NavBar(props) {
+  const _handleLogout = async (e) => {
+    e.preventDefault();
+    const { error } = await supabase.auth.signOut();
+    if (!error) {
+      props.setIsLoggedIn(false);
+    }
+    console.log(error);
+  };
+
   return (
     <nav>
       <NavLink to="/equipments">
@@ -16,6 +26,11 @@ export default function NavBar() {
       <NavLink to="/models">
         <span>Models</span>
       </NavLink>
+      {props.isLoggedIn ? (
+        <button onClick={_handleLogout}>Log Out</button>
+      ) : (
+        <button>Login</button>
+      )}
     </nav>
   );
 }

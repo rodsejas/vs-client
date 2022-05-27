@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL, BASE_API } from "../Constants";
-import NavBar from "../components/NavBar";
 
 export default function EditEquipment() {
   const [currentEquipment, setCurrentEquipment] = useState({});
@@ -88,7 +87,6 @@ export default function EditEquipment() {
 
   return (
     <div>
-      <NavBar />
       <p>Edit equipment</p>
       <form onSubmit={_handleSubmit}>
         <label>

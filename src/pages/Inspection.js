@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL, BASE_API } from "../Constants";
-import NavBar from "../components/NavBar";
 import { Link, useParams } from "react-router-dom";
 
 export default function Inspection() {
@@ -23,7 +22,6 @@ export default function Inspection() {
 
   return (
     <>
-      <NavBar />
       {Object.keys(inspection).length !== 0 ? (
         <div>
           <p>{inspection.inspection_date}</p>
