@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -73,10 +74,31 @@ export default function EditEquipment() {
 
   const _handleSubmit = async (e) => {
     e.preventDefault();
+    let postData;
+
+    const handleNullLifespanTo = (lifespanMonths) => {
+      const manufacture_date = updatedEquipment.manufacture_date;
+      const endDate = moment(manufacture_date)
+        .add(lifespanMonths, "M")
+        .format("YYYY-MM-DD");
+      return endDate;
+    };
+
+    if (updatedEquipment.end_of_life === null) {
+      const model_id = updatedEquipment.model_id;
+      const selectedModel = models.filter((e) => e.id === model_id);
+      const lifespanMonths = selectedModel[0].lifespan_from_manufacture;
+      postData = {
+        ...updatedEquipment,
+        end_of_life: handleNullLifespanTo(lifespanMonths),
+      };
+    } else {
+      postData = updatedEquipment;
+    }
 
     const url = `${BASE_URL}${BASE_API}/equipment/${params.id}/edit`;
     try {
-      const { data } = await axios.put(url, updatedEquipment);
+      const { data } = await axios.put(url, postData);
       const id = data[0].id;
       navigate(`/equipment/${id}`);
     } catch (error) {

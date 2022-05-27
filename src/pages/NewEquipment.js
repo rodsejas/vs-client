@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -59,9 +60,32 @@ export default function NewEquipment() {
   const _handleSubmit = async (e) => {
     e.preventDefault();
 
+    let postData;
+
+    const handleNullLifespanTo = (lifespanMonths) => {
+      const manufacture_date = newEquipment.manufacture_date;
+      const endDate = moment(manufacture_date)
+        .add(lifespanMonths, "M")
+        .format("YYYY-MM-DD");
+      return endDate;
+    };
+
+    if (newEquipment.end_of_life === null) {
+      debugger;
+      const model_id = newEquipment.model_id;
+      const selectedModel = models.filter((e) => e.id === Number(model_id));
+      const lifespanMonths = selectedModel[0].lifespan_from_manufacture;
+      postData = {
+        ...newEquipment,
+        end_of_life: handleNullLifespanTo(lifespanMonths),
+      };
+    } else {
+      postData = newEquipment;
+    }
+
     const url = `${BASE_URL}${BASE_API}/equipments`;
     try {
-      const { data } = await axios.post(url, newEquipment);
+      const { data } = await axios.post(url, postData);
       const id = data[0].id;
       navigate(`/equipment/${id}`);
     } catch (error) {
@@ -114,6 +138,7 @@ export default function NewEquipment() {
             type="date"
             name="manufacture_date"
             onInput={_handleChange}
+            required
           />
         </label>
         <label>
