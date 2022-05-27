@@ -2,23 +2,22 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL, BASE_API } from "../Constants";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function Inspection() {
   const [inspection, setInspection] = useState([]);
   const params = useParams();
 
-  const fetchInspection = async () => {
-    const { data } = await axios.get(
-      `${BASE_URL}${BASE_API}/inspection/${params.id}/`
-    );
-    const inspection = data[0];
-    setInspection(inspection);
-  };
-
   useEffect(() => {
+    const fetchInspection = async () => {
+      const { data } = await axios.get(
+        `${BASE_URL}${BASE_API}/inspection/${params.id}/`
+      );
+      const inspection = data[0];
+      setInspection(inspection);
+    };
     fetchInspection();
-  }, []);
+  }, [params.id]);
 
   return (
     <>

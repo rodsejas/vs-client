@@ -10,14 +10,6 @@ export default function EditModel() {
   const params = useParams();
   const navigate = useNavigate();
 
-  const fetchModel = async () => {
-    const { data } = await axios.get(
-      `${BASE_URL}${BASE_API}/model/${params.id}`
-    );
-    const model = data[0];
-    setModel(model);
-  };
-
   const _handleChange = (e) => {
     setModel({
       ...model,
@@ -39,8 +31,15 @@ export default function EditModel() {
   };
 
   useEffect(() => {
+    const fetchModel = async () => {
+      const { data } = await axios.get(
+        `${BASE_URL}${BASE_API}/model/${params.id}`
+      );
+      const model = data[0];
+      setModel(model);
+    };
     fetchModel();
-  }, []);
+  }, [params.id]);
 
   return (
     <>

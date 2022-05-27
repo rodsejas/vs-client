@@ -10,13 +10,6 @@ export default function Model() {
   const params = useParams();
   const navigate = useNavigate();
 
-  const fetchModel = async () => {
-    const { data } = await axios.get(
-      `${BASE_URL}${BASE_API}/model/${params.id}`
-    );
-    setModel(data);
-  };
-
   const _handleDelete = async (e) => {
     e.preventDefault();
     const url = `${BASE_URL}${BASE_API}/model/${params.id}/`;
@@ -29,8 +22,14 @@ export default function Model() {
   };
 
   useEffect(() => {
+    const fetchModel = async () => {
+      const { data } = await axios.get(
+        `${BASE_URL}${BASE_API}/model/${params.id}`
+      );
+      setModel(data);
+    };
     fetchModel();
-  }, []);
+  }, [params.id]);
 
   return (
     <div>

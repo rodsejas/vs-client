@@ -8,16 +8,15 @@ export default function Worker() {
   const [worker, setWorker] = useState([]);
   const params = useParams();
 
-  const fetchWorker = async () => {
-    const { data } = await axios.get(
-      `${BASE_URL}${BASE_API}/worker/${params.id}`
-    );
-    setWorker(data);
-  };
-
   useEffect(() => {
+    const fetchWorker = async () => {
+      const { data } = await axios.get(
+        `${BASE_URL}${BASE_API}/worker/${params.id}`
+      );
+      setWorker(data);
+    };
     fetchWorker();
-  }, []);
+  }, [params.id]);
 
   return (
     <div>

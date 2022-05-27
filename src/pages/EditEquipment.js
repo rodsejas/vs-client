@@ -10,22 +10,6 @@ export default function EditEquipment() {
 
   const params = useParams();
 
-  const fetchCurrentEquipment = async () => {
-    const { data } = await axios.get(
-      `${BASE_URL}${BASE_API}/equipment/${params.id}`
-    );
-    const equipment = data[0];
-    setCurrentEquipment(equipment);
-  };
-
-  const fetchUpdatedEquipment = async () => {
-    const { data } = await axios.get(
-      `${BASE_URL}${BASE_API}/equipment/${params.id}/edit`
-    );
-    const equipment = data[0];
-    setUpdatedEquipment(equipment);
-  };
-
   /**
    * Fetch models for dropdown menu
    */
@@ -55,9 +39,24 @@ export default function EditEquipment() {
   useEffect(() => {
     fetchModels();
     fetchWorkers();
+    const fetchCurrentEquipment = async () => {
+      const { data } = await axios.get(
+        `${BASE_URL}${BASE_API}/equipment/${params.id}`
+      );
+      const equipment = data[0];
+      setCurrentEquipment(equipment);
+    };
+
+    const fetchUpdatedEquipment = async () => {
+      const { data } = await axios.get(
+        `${BASE_URL}${BASE_API}/equipment/${params.id}/edit`
+      );
+      const equipment = data[0];
+      setUpdatedEquipment(equipment);
+    };
     fetchCurrentEquipment();
     fetchUpdatedEquipment();
-  }, []);
+  }, [params.id]);
 
   /**
    *
