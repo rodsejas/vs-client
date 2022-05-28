@@ -40,6 +40,37 @@ export default function Model() {
             <p>Manufacturer: {m.manufacturer}</p>
             <p>Model No: {m.model_num}</p>
             <p>Standards: {m.standards}</p>
+            <p>
+              Image:{" "}
+              {m.image ? (
+                <img
+                  src={`https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/${m.image}`}
+                  alt="model-img"
+                />
+              ) : (
+                "No image uploaded"
+              )}
+            </p>
+            <p>
+              Manual:
+              {m.manual ? (
+                <a
+                  href="https://vertical-space.com/api/models/63/manual/Karabina-2016-02-19.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer" // added to remove warnings
+                >
+                  <img
+                    alt="thumbanil-files"
+                    src={
+                      "https://vertical-space.com/assets/3.3.1/images/generic-thumb.png"
+                    }
+                  />
+                </a>
+              ) : (
+                "No manual available"
+              )}
+            </p>
+
             <Link to={`/model/${m.id}/edit`}>
               <button>Edit</button>
             </Link>
