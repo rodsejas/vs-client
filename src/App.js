@@ -21,7 +21,7 @@ import EditModel from "./pages/EditModel";
 import NewModel from "./pages/NewModel";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
-import NavBar from "./components/NavBar";
+// import NavBar from "./components/NavBar";
 
 const LoggedInContext = createContext(false);
 
