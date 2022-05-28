@@ -21,6 +21,7 @@ import EditModel from "./pages/EditModel";
 import NewModel from "./pages/NewModel";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+
 // import NavBar from "./components/NavBar";
 
 const LoggedInContext = createContext(false);
@@ -47,105 +48,105 @@ function App() {
             <Route
               path="/equipments"
               element={
-                <RequireLoggedIn>
-                  <Equipments />
-                </RequireLoggedIn>
+                // <RequireLoggedIn>
+                <Equipments />
+                // </RequireLoggedIn>
               }
             />
             <Route
               path="/equipment/:id"
               element={
-                <RequireLoggedIn>
-                  <Equipment />
-                </RequireLoggedIn>
+                // <RequireLoggedIn>
+                <Equipment />
+                // </RequireLoggedIn>
               }
             />
             <Route
               path="/equipment/:id/edit"
               element={
-                <RequireLoggedIn>
-                  <EditEquipment />
-                </RequireLoggedIn>
+                // <RequireLoggedIn>
+                <EditEquipment />
+                // </RequireLoggedIn>
               }
             />
             <Route
               path="/equipment/create"
               element={
-                <RequireLoggedIn>
-                  <NewEquipment />
-                </RequireLoggedIn>
+                // <RequireLoggedIn>
+                <NewEquipment />
+                // </RequireLoggedIn>
               }
             />
             <Route
               path="/workers"
               element={
-                <RequireLoggedIn>
-                  <Workers />
-                </RequireLoggedIn>
+                // <RequireLoggedIn>
+                <Workers />
+                // </RequireLoggedIn>
               }
             />
             <Route
               path="/worker/:id"
               element={
-                <RequireLoggedIn>
-                  <Worker />
-                </RequireLoggedIn>
+                // <RequireLoggedIn>
+                <Worker />
+                // </RequireLoggedIn>
               }
             />
             <Route
               path="/inspections"
               element={
-                <RequireLoggedIn>
-                  <Inspections />
-                </RequireLoggedIn>
+                // <RequireLoggedIn>
+                <Inspections />
+                // </RequireLoggedIn>
               }
             />
             <Route
               path="/inspection/:id"
               element={
-                <RequireLoggedIn>
-                  <Inspection />
-                </RequireLoggedIn>
+                // <RequireLoggedIn>
+                <Inspection />
+                // </RequireLoggedIn>
               }
             />
             <Route
               path="/equipment/:id/inspection/create"
               element={
-                <RequireLoggedIn>
-                  <NewInspection />
-                </RequireLoggedIn>
+                // <RequireLoggedIn>
+                <NewInspection />
+                // </RequireLoggedIn>
               }
             />
             <Route
               path="/models"
               element={
-                <RequireLoggedIn>
-                  <Models />
-                </RequireLoggedIn>
+                // <RequireLoggedIn>
+                <Models />
+                // </RequireLoggedIn>
               }
             />
             <Route
               path="/model/:id"
               element={
-                <RequireLoggedIn>
-                  <Model />
-                </RequireLoggedIn>
+                // <RequireLoggedIn>
+                <Model />
+                // </RequireLoggedIn>
               }
             />
             <Route
               path="/model/:id/edit"
               element={
-                <RequireLoggedIn>
-                  <EditModel />
-                </RequireLoggedIn>
+                // <RequireLoggedIn>
+                <EditModel />
+                // </RequireLoggedIn>
               }
             />
             <Route
               path="/model/create"
               element={
-                <RequireLoggedIn>
-                  <NewModel />
-                </RequireLoggedIn>
+                // <RequireLoggedIn>
+                <NewModel />
+                // </RequireLoggedIn>
               }
             />
             <Route path="/signup" element={<SignUp />} />

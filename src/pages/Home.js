@@ -20,7 +20,6 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import * as React from "react";
-// import { FiDownloadCloud } from "react-icons/fi";
 import { Card } from "../components/Card";
 import { Navbar } from "../components/Navbar.jsx";
 import { Sidebar } from "../components/Sidebar";

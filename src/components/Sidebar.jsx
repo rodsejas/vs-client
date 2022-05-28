@@ -61,13 +61,25 @@ export const Sidebar = () => (
           <Input placeholder="Search" variant="filled" colorScheme="blue" />
         </InputGroup>
         <Stack spacing="1">
-          <NavButton label="Home" icon={FiHome} />
+          <Link as={LinkRoutes} to="/">
+            <NavButton label="Home" icon={FiHome} />
+          </Link>
+
           <Link as={LinkRoutes} to="/equipments">
             <NavButton label="Equipment" icon={FiTool} />
           </Link>
-          <NavButton label="Workers" icon={FiUsers} />
-          <NavButton label="Inspections" icon={FiCheckSquare} />
-          <NavButton label="Models" icon={FiLayers} />
+
+          <Link as={LinkRoutes} to="/workers">
+            <NavButton label="Workers" icon={FiUsers} />
+          </Link>
+
+          <Link as={LinkRoutes} to="/inspections">
+            <NavButton label="Inspections" icon={FiCheckSquare} />
+          </Link>
+
+          <Link as={LinkRoutes} to="/models">
+            <NavButton label="Models" icon={FiLayers} />
+          </Link>
         </Stack>
       </Stack>
       <Stack
@@ -91,7 +103,7 @@ export const Sidebar = () => (
           colorScheme="whiteAlpha"
           variant="solid"
         >
-          Sign Out
+          Log Out
         </Button>
       </Stack>
     </Stack>
