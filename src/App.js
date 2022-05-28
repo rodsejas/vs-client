@@ -1,4 +1,3 @@
-import "./App.css";
 import {
   HashRouter as Router,
   Route,
@@ -42,7 +41,7 @@ function App() {
     <LoggedInContext.Provider value={isLoggedIn}>
       <div className="App">
         <Router>
-          <NavBar setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+          {/* <NavBar setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} /> */}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route

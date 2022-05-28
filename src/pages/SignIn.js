@@ -54,7 +54,7 @@ import {
   Button,
   Checkbox,
   Container,
-  Divider,
+  // Divider,
   FormControl,
   FormLabel,
   Heading,
@@ -66,11 +66,11 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { Logo } from "../components/Logo";
-import { OAuthButtonGroup } from "../components/OAuthButtonGroup";
+import { Logo } from "../components/SignInLogo";
+// import { OAuthButtonGroup } from "../components/OAuthButtonGroup";
 // import { PasswordField } from "../components/PasswordField";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "../supabase";
 
 const SignIn = (props) => {
@@ -135,9 +135,11 @@ const SignIn = (props) => {
             </Heading>
             <HStack spacing="1" justify="center">
               <Text color="muted">Don't have an account?</Text>
-              <Button variant="link" colorScheme="blue">
-                Sign up
-              </Button>
+              <Link to="/signup">
+                <Button variant="link" colorScheme="blue">
+                  Sign up
+                </Button>
+              </Link>
             </HStack>
           </Stack>
         </Stack>
@@ -195,14 +197,14 @@ const SignIn = (props) => {
                 <Button variant="primary" type="submit">
                   Sign in
                 </Button>
-                <HStack>
+                {/* <HStack>
                   <Divider />
                   <Text fontSize="sm" whiteSpace="nowrap" color="muted">
                     or continue with
                   </Text>
                   <Divider />
-                </HStack>
-                <OAuthButtonGroup />
+                </HStack> */}
+                {/* <OAuthButtonGroup /> */}
               </Stack>
             </Stack>
           </form>
