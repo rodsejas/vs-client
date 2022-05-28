@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL, BASE_API } from "../Constants";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Box,
   Button,
@@ -109,9 +109,11 @@ export default function Equipments() {
                 <Text fontSize="lg" fontWeight="medium">
                   Equipment List
                 </Text>
-                <Button variant="primary" rightIcon={<FiPlus />}>
-                  Add New Equipment
-                </Button>
+                <Link to={`/equipment/create`}>
+                  <Button variant="primary" rightIcon={<FiPlus />}>
+                    Add New Equipment
+                  </Button>
+                </Link>
               </Stack>
             </Box>
             <Box overflowX="auto">
