@@ -16,7 +16,7 @@ export default function Equipment() {
   const _handleDelete = async (e) => {
     e.preventDefault();
 
-    const url = `${BASE_URL}${BASE_API}/equipment/${params.id}/`;
+    const url = `${BASE_URL}${BASE_API}/equipment/${params.id}`;
     try {
       await axios.delete(url, equipment);
       navigate(`/equipments`);
@@ -39,6 +39,7 @@ export default function Equipment() {
       );
       setInspections(data);
     };
+
     fetchEquipment();
     fetchInspections();
   }, [params.id]);
@@ -50,6 +51,8 @@ export default function Equipment() {
           <div key={e.id}>
             <p>Serial num: {e.serial_num}</p>
             <p>Manufacture date: {e.manufacture_date}</p>
+            <p>End of Life: {e.end_of_life}</p>
+            <p>Next Inspection Due : {e.next_inspection_due}</p>
             <p>Specification: {e.specification}</p>
             <p>Status {e.status}</p>
             {e.workers !== null ? (
