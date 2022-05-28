@@ -8,8 +8,9 @@ import { BASE_URL, BASE_API } from "../Constants";
 export default function EditEquipment() {
   const [currentEquipment, setCurrentEquipment] = useState({});
   const [updatedEquipment, setUpdatedEquipment] = useState({});
-
+  const [inspections, setInspections] = useState([]);
   const params = useParams();
+  const navigate = useNavigate();
 
   /**
    * Fetch models for dropdown menu
@@ -55,15 +56,18 @@ export default function EditEquipment() {
       const equipment = data[0];
       setUpdatedEquipment(equipment);
     };
+
+    const fetchInspections = async () => {
+      const { data } = await axios.get(
+        `${BASE_URL}${BASE_API}/equipment/${params.id}/inspections`
+      );
+      setInspections(data);
+    };
+
+    fetchInspections();
     fetchCurrentEquipment();
     fetchUpdatedEquipment();
   }, [params.id]);
-
-  /**
-   *
-   */
-
-  const navigate = useNavigate();
 
   const _handleChange = (e) => {
     setUpdatedEquipment({
@@ -76,7 +80,7 @@ export default function EditEquipment() {
     e.preventDefault();
     let postData;
 
-    const handleNullLifespanTo = (lifespanMonths) => {
+    const setLifespanTo = (lifespanMonths) => {
       const manufacture_date = updatedEquipment.manufacture_date;
       const endDate = moment(manufacture_date)
         .add(lifespanMonths, "M")
@@ -84,16 +88,38 @@ export default function EditEquipment() {
       return endDate;
     };
 
-    if (updatedEquipment.end_of_life === null) {
-      const model_id = updatedEquipment.model_id;
-      const selectedModel = models.filter((e) => e.id === model_id);
-      const lifespanMonths = selectedModel[0].lifespan_from_manufacture;
+    const setNextInspectionDue = (inspectionFrequency) => {
+      const dateOfFirstUse = updatedEquipment.date_of_first_use;
+      const endDate = moment(dateOfFirstUse)
+        .add(inspectionFrequency, "M")
+        .format("YYYY-MM-DD");
+      return endDate;
+    };
+
+    const model_id = updatedEquipment.model_id;
+    const selectedModel = models.filter((e) => e.id === model_id);
+    const lifespanMonths = selectedModel[0].lifespan_from_manufacture;
+    const inspectionFrequency = selectedModel[0].inspection_frequency;
+
+    if (
+      updatedEquipment.manufacture_date !== currentEquipment.manufacture_date
+    ) {
       postData = {
         ...updatedEquipment,
-        end_of_life: handleNullLifespanTo(lifespanMonths),
+        end_of_life: setLifespanTo(lifespanMonths),
       };
     } else {
-      postData = updatedEquipment;
+      postData = { ...updatedEquipment };
+    }
+
+    if (
+      updatedEquipment.date_of_first_use !== null &&
+      !inspections.length > 0
+    ) {
+      postData = {
+        ...postData,
+        next_inspection_due: setNextInspectionDue(inspectionFrequency),
+      };
     }
 
     const url = `${BASE_URL}${BASE_API}/equipment/${params.id}/edit`;

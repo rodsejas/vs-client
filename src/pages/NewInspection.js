@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import moment from "moment";
 import axios from "axios";
 import { BASE_URL, BASE_API } from "../Constants";
 import { useNavigate, useParams } from "react-router-dom";
@@ -15,6 +16,7 @@ export default function NewInspection() {
     equipment_id: params.id,
     image: "",
   });
+  const [equipment, setEquipment] = useState([]);
   const [workers, setWorkers] = useState([]);
 
   const fetchWorkers = async () => {
@@ -37,6 +39,25 @@ export default function NewInspection() {
   const _handleSubmit = async (e) => {
     e.preventDefault();
 
+    const setNextInspectionDue = (inspectionFrequency) => {
+      const lastInspectionDate = inspection.inspection_date;
+      const endDate = moment(lastInspectionDate)
+        .add(inspectionFrequency, "M")
+        .format("YYYY-MM-DD");
+      return endDate;
+    };
+
+    const inspection_frequency = equipment[0].models.inspection_frequency;
+    const nextInspectionDue = setNextInspectionDue(inspection_frequency);
+    const patchData = { next_inspection_due: nextInspectionDue };
+
+    const patchUrl = `${BASE_URL}${BASE_API}/equipment/${params.id}/inspections`;
+    try {
+      await axios.patch(patchUrl, patchData);
+    } catch (error) {
+      console.log(error);
+    }
+
     const url = `${BASE_URL}${BASE_API}/inspections`;
     try {
       await axios.post(url, inspection);
@@ -47,8 +68,15 @@ export default function NewInspection() {
   };
 
   useEffect(() => {
+    const fetchEquipment = async () => {
+      const { data } = await axios.get(
+        `${BASE_URL}${BASE_API}/equipment/${params.id}`
+      );
+      setEquipment(data);
+    };
+    fetchEquipment();
     fetchWorkers();
-  }, []);
+  }, [params.id]);
 
   return (
     <>
@@ -65,7 +93,7 @@ export default function NewInspection() {
 
         <label>
           <p>Assign Worker</p>
-          <select name="worker_id" onChange={_handleChange}>
+          <select name="worker_id" required onChange={_handleChange}>
             <option hidden={true}>Select a worker</option>
             {workers.map((worker) => (
               <option key={worker.id} value={worker.id}>
@@ -82,6 +110,7 @@ export default function NewInspection() {
             type="date"
             name="inspection_date"
             onInput={_handleChange}
+            required
           />
         </label>
         <br />
@@ -91,6 +120,7 @@ export default function NewInspection() {
             type="radio"
             name="status"
             value="true"
+            required
             onChange={_handleRadioInput}
           />{" "}
           Suitable

@@ -59,7 +59,6 @@ export default function NewEquipment() {
 
   const _handleSubmit = async (e) => {
     e.preventDefault();
-
     let postData;
 
     const handleNullLifespanTo = (lifespanMonths) => {
@@ -70,17 +69,33 @@ export default function NewEquipment() {
       return endDate;
     };
 
+    const setNextInspectionDue = (inspectionFrequency) => {
+      const dateOfFirstUse = newEquipment.date_of_first_use;
+      const endDate = moment(dateOfFirstUse)
+        .add(inspectionFrequency, "M")
+        .format("YYYY-MM-DD");
+      return endDate;
+    };
+
+    const model_id = newEquipment.model_id;
+    const selectedModel = models.filter((e) => e.id === Number(model_id));
+    const lifespanMonths = selectedModel[0].lifespan_from_manufacture;
+    const inspectionFrequency = selectedModel[0].inspection_frequency;
+
     if (newEquipment.end_of_life === null) {
-      debugger;
-      const model_id = newEquipment.model_id;
-      const selectedModel = models.filter((e) => e.id === Number(model_id));
-      const lifespanMonths = selectedModel[0].lifespan_from_manufacture;
       postData = {
         ...newEquipment,
         end_of_life: handleNullLifespanTo(lifespanMonths),
       };
     } else {
-      postData = newEquipment;
+      postData = { ...newEquipment };
+    }
+
+    if (newEquipment.date_of_first_use !== null) {
+      postData = {
+        ...postData,
+        next_inspection_due: setNextInspectionDue(inspectionFrequency),
+      };
     }
 
     const url = `${BASE_URL}${BASE_API}/equipments`;
