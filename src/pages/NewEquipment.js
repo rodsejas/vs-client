@@ -142,8 +142,10 @@ export default function NewEquipment(props) {
 
         <label>
           <p>Model</p>
-          <select name="model_id" onChange={_handleChange}>
-            <option hidden={true}>Select a model</option>
+          <select name="model_id" required onChange={_handleChange}>
+            <option hidden={true} value="">
+              Select a model
+            </option>
             {models.map((model) => (
               <option key={model.id} value={model.id}>
                 {model.model_name}
@@ -154,8 +156,10 @@ export default function NewEquipment(props) {
 
         <label>
           <p>Assign Worker</p>
-          <select name="worker_id" onChange={_handleChange}>
-            <option hidden={true}>Select a worker</option>
+          <select name="worker_id" required onChange={_handleChange}>
+            <option hidden={true} value="">
+              Select a worker
+            </option>
             {workers.map((worker) => (
               <option key={worker.id} value={worker.id}>
                 {worker.first_name} {worker.last_name}

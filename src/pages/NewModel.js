@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL, BASE_API } from "../Constants";
+import { supabase } from "../supabase";
 
 export default function NewModel() {
   const [model, setModel] = useState({
@@ -16,6 +17,9 @@ export default function NewModel() {
     image: "",
     manual: "",
   });
+  const [image, setImage] = useState(null);
+  const [manual, setManual] = useState(null);
+  // const [pics, setPics] = useState(null);
 
   const navigate = useNavigate();
 
@@ -28,10 +32,46 @@ export default function NewModel() {
 
   const _handleSubmit = async (e) => {
     e.preventDefault();
+    let postData = { ...model };
+
+    let imageData;
+    let manualData;
+
+    if (image) {
+      // if image is uploaded - post it to supabase
+      const { data, error } = await supabase.storage
+        .from("vs")
+        .upload(`models/${Date.now()}_${image.name}`, image);
+
+      if (error) {
+        console.log(error);
+      }
+
+      if (data) {
+        imageData = data.Key;
+      }
+    }
+
+    if (manual) {
+      // if manual is uploaded - post it to supabase
+      const { data, error } = await supabase.storage
+        .from("vs")
+        .upload(`models/${Date.now()}_${manual.name}`, manual);
+
+      if (error) {
+        console.log(error);
+      }
+
+      if (data) {
+        manualData = data.Key;
+      }
+    }
+
+    postData = { ...postData, image: imageData, manual: manualData };
 
     const url = `${BASE_URL}${BASE_API}/models`;
     try {
-      const { data } = await axios.post(url, model);
+      const { data } = await axios.post(url, postData);
       const id = data[0].id;
       navigate(`/model/${id}`);
     } catch (error) {
@@ -92,6 +132,24 @@ export default function NewModel() {
           months
         </label>
 
+        <label>
+          <p>Image:</p>
+          <input
+            name="image"
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
+        </label>
+        <label>
+          <p>Manual:</p>
+          <input
+            name="manual"
+            type="file"
+            accept="application/pdf"
+            onChange={(e) => setManual(e.target.files[0])}
+          />
+        </label>
         <br />
         <input type="submit" value="Create" />
       </form>

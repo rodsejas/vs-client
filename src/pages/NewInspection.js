@@ -4,6 +4,7 @@ import moment from "moment";
 import axios from "axios";
 import { BASE_URL, BASE_API } from "../Constants";
 import { useNavigate, useParams } from "react-router-dom";
+import { supabase } from "../supabase";
 
 export default function NewInspection() {
   const params = useParams();
@@ -18,6 +19,7 @@ export default function NewInspection() {
   });
   const [equipment, setEquipment] = useState([]);
   const [workers, setWorkers] = useState([]);
+  const [image, setImage] = useState(null);
 
   const fetchWorkers = async () => {
     const { data } = await axios.get(`${BASE_URL}${BASE_API}/workers/dropdown`);
@@ -51,6 +53,7 @@ export default function NewInspection() {
     const nextInspectionDue = setNextInspectionDue(inspection_frequency);
     const patchData = { next_inspection_due: nextInspectionDue };
 
+    // updating the equipment's next inspection due date
     const patchUrl = `${BASE_URL}${BASE_API}/equipment/${params.id}/inspections`;
     try {
       await axios.patch(patchUrl, patchData);
@@ -58,9 +61,30 @@ export default function NewInspection() {
       console.log(error);
     }
 
+    // uploading inspection image to supabase "inspection" bucket
+    let imageData;
+
+    if (image) {
+      // if image is uploaded - post it to supabase
+      const { data, error } = await supabase.storage
+        .from("vs")
+        .upload(`inspections/${Date.now()}_${image.name}`, image);
+
+      if (error) {
+        console.log(error);
+      }
+
+      if (data) {
+        imageData = data.Key;
+      }
+    }
+
+    let postData = { ...inspection, image: imageData };
+    console.log(postData);
+
     const url = `${BASE_URL}${BASE_API}/inspections`;
     try {
-      await axios.post(url, inspection);
+      await axios.post(url, postData);
       navigate(`/equipment/${inspection.equipment_id}`);
     } catch (error) {
       console.log(error);
@@ -92,9 +116,21 @@ export default function NewInspection() {
         </label>
 
         <label>
+          <p> Attach image:</p>{" "}
+          <input
+            type="file"
+            name="images"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
+        </label>
+
+        <label>
           <p>Assign Worker</p>
           <select name="worker_id" required onChange={_handleChange}>
-            <option hidden={true}>Select a worker</option>
+            <option hidden={true} value="">
+              Select a worker
+            </option>
             {workers.map((worker) => (
               <option key={worker.id} value={worker.id}>
                 {worker.first_name} {worker.last_name}
@@ -108,6 +144,7 @@ export default function NewInspection() {
           <input
             placeholder="Not recorded"
             type="date"
+            max={`${moment().format("YYYY-MM-DD")}`}
             name="inspection_date"
             onInput={_handleChange}
             required
