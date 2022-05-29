@@ -148,7 +148,9 @@ export default function Equipment() {
                           Edit Equipment Details
                         </Button>
                       </Link>
-                      <Button colorScheme="red">Delete</Button>
+                      <Button colorScheme="red" onClick={_handleDelete}>
+                        Delete
+                      </Button>
                     </Stack>
                   </Stack>
                   <Divider />
@@ -240,6 +242,27 @@ export default function Equipment() {
                     </Stat>
                   </StatGroup>
                   <Divider />
+                  <Link to={`/equipment/${e.id}/inspection/create`}>
+                    <button> New Inspection</button>
+                  </Link>
+
+                  {/* INSPECTIONS TABLE */}
+
+                  {inspections.map((i) => {
+                    return (
+                      <Link key={i.id} to={`/inspection/${i.id}`}>
+                        <p>Inspection Date: {i.inspection_date}</p>
+                        <p>
+                          Technician: {i.workers.first_name}{" "}
+                          {i.workers.last_name}
+                        </p>
+                        <p>Notes: {i.notes}</p>
+                        <p>
+                          Result: {i.has_passed ? "Suitable" : "Not Suitable"}
+                        </p>
+                      </Link>
+                    );
+                  })}
                 </>
               );
             })}
