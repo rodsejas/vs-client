@@ -55,9 +55,9 @@ export default function Model() {
               Manual:
               {m.manual ? (
                 <a
-                  href="https://vertical-space.com/api/models/63/manual/Karabina-2016-02-19.pdf"
+                  href={`https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/${m.manual}`}
                   target="_blank"
-                  rel="noopener noreferrer" // added to remove warnings
+                  rel="noopener noreferrer" // added to remove warnings related to target=_blank
                 >
                   <img
                     alt="thumbanil-files"

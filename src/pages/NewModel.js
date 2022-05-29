@@ -34,6 +34,9 @@ export default function NewModel() {
     e.preventDefault();
     let postData = { ...model };
 
+    let imageData;
+    let manualData;
+
     if (image) {
       // if image is uploaded - post it to supabase
       const { data, error } = await supabase.storage
@@ -45,7 +48,7 @@ export default function NewModel() {
       }
 
       if (data) {
-        postData = { ...model, image: data.Key };
+        imageData = data.Key;
       }
     }
 
@@ -60,26 +63,12 @@ export default function NewModel() {
       }
 
       if (data) {
-        postData = { ...model, manual: data.Key };
+        manualData = data.Key;
       }
     }
 
-    // if (pics) {
-    //   // trying to upload multiple images using loops
-    //   debugger;
-    //   console.log(pics);
-    //   pics.forEach((p) => {
-    //       const { data, error } = await supabase.storage
-    //         .from("vs")
-    //         .upload(`models/${Date.now()}_${p.name}`, p);
+    postData = { ...postData, image: imageData, manual: manualData };
 
-    //         if(data){
-    //           postData = { ...model, pics: [].push(data.Key) };
-    //         }
-    //   });
-    // }
-
-    console.log(postData);
     const url = `${BASE_URL}${BASE_API}/models`;
     try {
       const { data } = await axios.post(url, postData);
@@ -161,17 +150,6 @@ export default function NewModel() {
             onChange={(e) => setManual(e.target.files[0])}
           />
         </label>
-
-        {/* <label>
-          <p> Select files:</p>{" "}
-          <input
-            type="file"
-            name="pics"
-            multiple
-            onChange={(e) => setPics(e.target.files)}
-          />
-        </label> */}
-
         <br />
         <input type="submit" value="Create" />
       </form>

@@ -30,6 +30,17 @@ export default function Inspection() {
             {inspection.workers.first_name} {inspection.workers.last_name}
           </p>
           <p>{inspection.notes}</p>
+          <p>
+            Image:{" "}
+            {inspection.image ? (
+              <img
+                src={`https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/${inspection.image}`}
+                alt="inspection-img"
+              />
+            ) : (
+              "No image uploaded"
+            )}
+          </p>
           <p>{inspection.has_passed ? "Suitable" : "Not suitable"}</p>
         </div>
       ) : (
