@@ -5,6 +5,15 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { BASE_URL, BASE_API } from "../Constants";
 import { Link } from "react-router-dom";
+// import {
+//   Box,
+//   Button,
+//   Container,
+//   Divider,
+//   Stack,
+//   Text,
+//   useColorModeValue,
+// } from "@chakra-ui/react";
 
 export default function Equipment() {
   const [equipment, setEquipment] = useState([]);
@@ -85,5 +94,41 @@ export default function Equipment() {
         );
       })}
     </div>
+    // <>
+    //   <Box
+    //     as="section"
+    //     pt={{ base: "4", md: "8" }}
+    //     pb={{ base: "12", md: "24" }}
+    //   >
+    //     <Container>
+    //       <Box
+    //         bg="bg-surface"
+    //         px={{ base: "4", md: "6" }}
+    //         py="5"
+    //         boxShadow={useColorModeValue("sm", "sm-dark")}
+    //         borderRadius="lg"
+    //       >
+    //         <Stack
+    //           spacing="4"
+    //           direction={{ base: "column", sm: "row" }}
+    //           justify="space-between"
+    //         >
+    //           <Stack spacing="1">
+    //             <Text fontSize="lg" fontWeight="medium">
+    //               Equipment Overview
+    //             </Text>
+    //             <Text color="muted" fontSize="sm">
+    //               All details in the overview
+    //             </Text>
+    //           </Stack>
+    //           <Button variant="primary" alignSelf="start">
+    //             Invite
+    //           </Button>
+    //         </Stack>
+    //         <Divider />
+    //       </Box>
+    //     </Container>
+    //   </Box>
+    // </>
   );
 }

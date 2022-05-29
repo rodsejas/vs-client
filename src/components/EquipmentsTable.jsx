@@ -11,6 +11,8 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import * as React from "react";
+import { Link } from "react-router-dom";
+
 // import Equipment from "../pages/Equipment";
 
 const EquipmentsTable = (props) => {
@@ -40,8 +42,12 @@ const EquipmentsTable = (props) => {
             <Td>
               <HStack spacing="3">
                 <Box>
-                  <Text fontWeight="medium">{equipment.models.model_name}</Text>
-                  <Text color="muted">{equipment.specification}</Text>
+                  <Link key={equipment.id} to={`/equipment/${equipment.id}`}>
+                    <Text fontWeight="medium">
+                      {equipment.models.model_name}
+                    </Text>
+                    <Text color="muted">{equipment.specification}</Text>
+                  </Link>
                 </Box>
               </HStack>
             </Td>
@@ -62,7 +68,6 @@ const EquipmentsTable = (props) => {
             <Td>Test</Td>
             <Td>
               <Badge
-                size="sm"
                 colorScheme={equipment.status === "Suitable" ? "green" : "red"}
               >
                 {equipment.status}
