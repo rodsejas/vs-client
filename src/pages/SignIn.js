@@ -100,9 +100,6 @@ const SignIn = (props) => {
     console.log({ user, session, error });
   };
 
-  console.log("Email state", email);
-  console.log("Password state", password);
-
   return (
     <Container
       maxW="lg"
