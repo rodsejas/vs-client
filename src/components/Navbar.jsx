@@ -8,12 +8,17 @@ import {
   Image,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { Logo } from "./Logo";
 import { Sidebar } from "./Sidebar";
+import { useLocation } from "react-router-dom";
 import { ToggleButton } from "./ToggleButton";
+
+const withoutNavbarRoutes = ["/signin", "/signup"];
 
 export const Navbar = () => {
   const { isOpen, onToggle, onClose } = useDisclosure();
+  const { pathname } = useLocation();
+
+  if (withoutNavbarRoutes.some((item) => pathname.includes(item))) return null;
   return (
     <Box
       width="full"

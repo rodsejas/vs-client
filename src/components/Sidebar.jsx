@@ -28,12 +28,12 @@ import { Link as LinkRoutes } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { supabase } from "../supabase";
 
-const withouSidebarRoutes = ["/signin", "/signup"];
+const withoutSidebarRoutes = ["/signin", "/signup"];
 
 export const Sidebar = (props) => {
   const { pathname } = useLocation();
 
-  if (withouSidebarRoutes.some((item) => pathname.includes(item))) return null;
+  if (withoutSidebarRoutes.some((item) => pathname.includes(item))) return null;
 
   const _handleLogout = async (e) => {
     e.preventDefault();
