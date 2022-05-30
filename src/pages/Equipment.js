@@ -216,7 +216,7 @@ export default function Equipment() {
                         <StatLabel fontSize="small" color="muted">
                           Date Of First Use
                         </StatLabel>
-                        <StatNumber fontSize="large">May 26 2022 </StatNumber>
+                        <StatNumber fontSize="large">May 26 2022</StatNumber>
                       </Stat>
 
                       <Stat>
