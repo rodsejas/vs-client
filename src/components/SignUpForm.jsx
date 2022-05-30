@@ -8,9 +8,7 @@ import {
   HStack,
   Input,
   Stack,
-  Image,
   Text,
-  Checkbox,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
