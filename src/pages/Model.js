@@ -62,9 +62,11 @@ export default function Model() {
                   <img
                     alt="thumbanil-files"
                     src={
-                      "https://vertical-space.com/assets/3.3.1/images/generic-thumb.png"
+                      "https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/vs/thumbnails/file-thumbnail.png"
                     }
                   />
+                  {m.manual.split("").slice(24).join("")}
+                  {/* To show the file name */}
                 </a>
               ) : (
                 "No manual available"
