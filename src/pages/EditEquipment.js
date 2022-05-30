@@ -4,8 +4,24 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL, BASE_API } from "../Constants";
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  Stack,
+  useColorModeValue,
+  Container,
+  Text,
+  StackDivider,
+  Select,
+} from "@chakra-ui/react";
+import { FiPlus } from "react-icons/fi";
 
-export default function EditEquipment() {
+export default function EditEquipment(props) {
   const [currentEquipment, setCurrentEquipment] = useState({});
   const [updatedEquipment, setUpdatedEquipment] = useState({});
   const [inspections, setInspections] = useState([]);
@@ -134,102 +150,185 @@ export default function EditEquipment() {
 
   return (
     <div>
-      <p>Edit equipment</p>
-      <form onSubmit={_handleSubmit}>
-        <label>
-          <p>Serial Number</p>
-          <input
-            placeholder="Type in or scan barcode"
-            type="text"
-            name="serial_num"
-            defaultValue={currentEquipment.serial_num}
-            onInput={_handleChange}
-          />
-        </label>
-
-        <label>
-          <p>Model</p>
-
-          <select
-            name="model_id"
-            onChange={_handleChange}
-            value={
-              Object.keys(currentEquipment).length !== 0
-                ? updatedEquipment.model_id
-                : "Loading"
-            }
+      <Container
+        py={{
+          base: "4",
+          md: "8",
+        }}
+      >
+        <Stack spacing="5" divider={<StackDivider />}>
+          <Stack
+            direction={{
+              base: "column",
+              lg: "row",
+            }}
+            spacing={{
+              base: "5",
+              lg: "8",
+            }}
+            justify="space-between"
           >
-            {models.map((model) => (
-              <option key={model.id} value={model.id}>
-                {model.model_name}
-              </option>
-            ))}
-          </select>
-        </label>
+            {/* <form onSubmit={_handleSubmit}> */}
+            <Box flexShrink={1}>
+              <Text fontSize="lg" fontWeight="medium">
+                Edit basic equipment data
+              </Text>
+            </Box>
+            <Box
+              as="form"
+              bg="bg-surface"
+              boxShadow={useColorModeValue("sm", "sm-dark")}
+              borderRadius="lg"
+              {...props}
+            >
+              <Stack
+                spacing="5"
+                px={{
+                  base: "4",
+                  md: "6",
+                }}
+                py={{
+                  base: "5",
+                  md: "6",
+                }}
+              >
+                {/*  FIRST ROW */}
 
-        <label>
-          <p>Assign Worker</p>
-          <select
-            name="worker_id"
-            onChange={_handleChange}
-            value={
-              Object.keys(currentEquipment).length !== 0
-                ? updatedEquipment.worker_id
-                : "Loading"
-            }
-          >
-            <option hidden={true}>Select a worker</option>
-            {workers.map((worker) => (
-              <option key={worker.id} value={worker.id}>
-                {worker.first_name} {worker.last_name}
-              </option>
-            ))}
-          </select>
-        </label>
+                <FormControl id="model_id" isRequired>
+                  <FormLabel>Model</FormLabel>
+                  <Select
+                    name="model_id"
+                    onChange={_handleChange}
+                    value={
+                      Object.keys(currentEquipment).length !== 0
+                        ? updatedEquipment.model_id
+                        : "Loading"
+                    }
+                  >
+                    {models.map((model) => (
+                      <option key={model.id} value={model.id}>
+                        {model.model_name}
+                      </option>
+                    ))}
+                  </Select>
+                </FormControl>
 
-        <label>
-          <p>Date of Manufacture</p>
-          <input
-            placeholder="Not recorded"
-            type="date"
-            name="manufacture_date"
-            defaultValue={currentEquipment.manufacture_date}
-            onInput={_handleChange}
-          />
-        </label>
-        <label>
-          <p>Date of First Use</p>
-          <input
-            placeholder="Has not occurred yet"
-            type="date"
-            name="date_of_first_use"
-            defaultValue={currentEquipment.date_of_first_use}
-            onInput={_handleChange}
-          />
-        </label>
-        <label>
-          <p>Lifespan To</p>
-          <input
-            placeholder="Unlimited"
-            type="date"
-            name="end_of_life"
-            defaultValue={currentEquipment.end_of_life}
-            onInput={_handleChange}
-          />
-        </label>
-        <label>
-          <p>Specification</p>
-          <input
-            placeholder="E.g. size, colour, length, etc"
-            type="text"
-            name="specification"
-            defaultValue={currentEquipment.specification}
-            onInput={_handleChange}
-          />
-        </label>
+                {/*  SECOND ROW */}
 
-        <input type="submit" value="Submit" />
-      </form>
+                <Stack
+                  spacing="6"
+                  direction={{
+                    base: "column",
+                    md: "row",
+                  }}
+                >
+                  <FormControl id="serial_num">
+                    <FormLabel>Serial Number</FormLabel>
+                    <Input
+                      placeholder="Type in or scan barcode"
+                      type="text"
+                      name="serial_num"
+                      defaultValue={currentEquipment.serial_num}
+                      onInput={_handleChange}
+                    />
+                  </FormControl>
+                  <FormControl id="specification">
+                    <FormLabel>Specification</FormLabel>
+                    <Input
+                      type="text"
+                      name="specification"
+                      placeholder="Size, colour, length, etc."
+                      defaultValue={currentEquipment.specification}
+                      onInput={_handleChange}
+                    />
+                  </FormControl>
+                </Stack>
+
+                {/* THIRD ROW */}
+
+                <FormControl id="worker_id" isRequired>
+                  <FormLabel>Assign to Worker</FormLabel>
+                  <Select
+                    name="worker_id"
+                    onChange={_handleChange}
+                    value={
+                      Object.keys(currentEquipment).length !== 0
+                        ? updatedEquipment.worker_id
+                        : "Loading"
+                    }
+                  >
+                    <option hidden={true}>Select a worker</option>
+                    {workers.map((worker) => (
+                      <option key={worker.id} value={worker.id}>
+                        {worker.first_name} {worker.last_name}
+                      </option>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                {/* FOURTH ROW */}
+                <Stack
+                  spacing="6"
+                  direction={{
+                    base: "column",
+                    md: "row",
+                  }}
+                >
+                  <FormControl id="manufacture_date" isRequired>
+                    <FormLabel>Date Of Manufacture</FormLabel>
+                    <Input
+                      name="manufacture_date"
+                      type="date"
+                      placeholder="Not recorded"
+                      defaultValue={currentEquipment.manufacture_date}
+                      max={`${moment().format("YYYY-MM-DD")}`}
+                      onInput={_handleChange}
+                    />
+                  </FormControl>
+                  <FormControl id="date_of_first_use">
+                    <FormLabel>Date of First Use</FormLabel>
+                    <Input
+                      name="date_of_first_use"
+                      type="date"
+                      placeholder="Has not occurred yet"
+                      defaultValue={currentEquipment.date_of_first_use}
+                      onInput={_handleChange}
+                    />
+                  </FormControl>
+                  <FormControl id="end_of_life">
+                    <FormLabel>Lifespan To</FormLabel>
+                    <Input
+                      name="end_of_life"
+                      type="date"
+                      placeholder="Unlimited"
+                      defaultValue={currentEquipment.end_of_life}
+                      onInput={_handleChange}
+                    />
+                  </FormControl>
+                </Stack>
+              </Stack>
+              <Divider />
+              <Flex
+                direction="row-reverse"
+                py="4"
+                px={{
+                  base: "4",
+                  md: "6",
+                }}
+              >
+                <Button
+                  type="submit"
+                  variant="primary"
+                  rightIcon={<FiPlus />}
+                  onClick={_handleSubmit}
+                >
+                  Add
+                </Button>
+              </Flex>
+            </Box>
+          </Stack>
+        </Stack>
+      </Container>
     </div>
   );
 }

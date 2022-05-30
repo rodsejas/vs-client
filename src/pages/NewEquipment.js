@@ -73,8 +73,6 @@ export default function NewEquipment(props) {
     setNewEquipment({ ...newEquipment, [e.target.name]: e.target.value });
   };
 
-  console.log(newEquipment);
-
   const _handleSubmit = async (e) => {
     e.preventDefault();
     let postData;
@@ -128,86 +126,6 @@ export default function NewEquipment(props) {
 
   return (
     <div>
-      {/* <p>Create equipment</p>
-      <form onSubmit={_handleSubmit}>
-        <label>
-          <p>Serial Number</p>
-          <input
-            placeholder="Type in or scan barcode"
-            type="text"
-            name="serial_num"
-            onInput={_handleChange}
-          />
-        </label>
-
-        <label>
-          <p>Model</p>
-          <select name="model_id" required onChange={_handleChange}>
-            <option hidden={true} value="">
-              Select a model
-            </option>
-            {models.map((model) => (
-              <option key={model.id} value={model.id}>
-                {model.model_name}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label>
-          <p>Assign Worker</p>
-          <select name="worker_id" required onChange={_handleChange}>
-            <option hidden={true} value="">
-              Select a worker
-            </option>
-            {workers.map((worker) => (
-              <option key={worker.id} value={worker.id}>
-                {worker.first_name} {worker.last_name}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label>
-          <p>Date of Manufacture</p>
-          <input
-            placeholder="Not recorded"
-            type="date"
-            name="manufacture_date"
-            onInput={_handleChange}
-            required
-          />
-        </label>
-        <label>
-          <p>Date of First Use</p>
-          <input
-            placeholder="Has not occurred yet"
-            type="date"
-            name="date_of_first_use"
-            onInput={_handleChange}
-          />
-        </label>
-        <label>
-          <p>Lifespan To</p>
-          <input
-            placeholder="Unlimited"
-            type="date"
-            name="end_of_life"
-            onInput={_handleChange}
-          />
-        </label>
-        <label>
-          <p>Specification</p>
-          <input
-            placeholder="E.g. size, colour, length, etc"
-            type="text"
-            name="specification"
-            onInput={_handleChange}
-          />
-        </label>
-
-        <input type="submit" value="Submit" />
-      </form> */}
       <Container
         py={{
           base: "4",
@@ -299,7 +217,7 @@ export default function NewEquipment(props) {
 
                 {/* THIRD ROW */}
 
-                <FormControl id="firstName">
+                <FormControl id="worker_id" isRequired>
                   <FormLabel>Assign to Worker</FormLabel>
                   <Select name="worker_id" onChange={_handleChange}>
                     <option hidden={true}>Select a worker</option>
@@ -319,7 +237,7 @@ export default function NewEquipment(props) {
                     md: "row",
                   }}
                 >
-                  <FormControl id="manufacture_date">
+                  <FormControl id="manufacture_date" isRequired>
                     <FormLabel>Date Of Manufacture</FormLabel>
                     <Input
                       name="manufacture_date"
@@ -367,7 +285,6 @@ export default function NewEquipment(props) {
                 </Button>
               </Flex>
             </Box>
-            {/* </form> */}
           </Stack>
         </Stack>
       </Container>
