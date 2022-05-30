@@ -13,14 +13,25 @@ import {
   Stack,
   HStack,
   Text,
+  VStack,
   useColorModeValue,
   Stat,
   StatNumber,
+  useBreakpointValue,
   StatGroup,
   StatLabel,
   Badge,
   Image,
+  ButtonGroup,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
 } from "@chakra-ui/react";
+
+import { FiPlus } from "react-icons/fi";
 
 export default function Equipment() {
   const [equipment, setEquipment] = useState([]);
@@ -28,6 +39,11 @@ export default function Equipment() {
 
   const params = useParams();
   const navigate = useNavigate();
+
+  const isMobile = useBreakpointValue({
+    base: true,
+    md: false,
+  });
 
   const _handleDelete = async (e) => {
     e.preventDefault();
@@ -102,190 +118,336 @@ export default function Equipment() {
     //   })}
     // </div>
     <>
-      <Stack
-        spacing={2}
-        pt={{ base: "4", md: "8" }}
-        pl={{ base: "8", md: "16" }}
-        direction="row"
-      >
-        <Box>
-          <Image
-            src="https://www.climbinganchors.com.au/assets/full/OCUNWBQ.jpg?20210309033228"
-            alt="Harness"
-            boxSize="333.25"
-            boxShadow={useColorModeValue("sm", "sm-dark")}
-            objectFit="cover"
-            borderRadius="lg"
-            fallbackSrc="https://via.placeholder.com/300"
-          />
-        </Box>
-        <Box
-          as="section"
-          // pt={{ base: "4", md: "8" }}
-          // pb={{ base: "12", md: "24" }}
+      <VStack>
+        <Stack
+          spacing={2}
+          pt={{ base: "4", md: "8" }}
+          pl={{ base: "8", md: "16" }}
+          direction="row"
         >
-          <Container>
-            <Box
-              bg="bg-surface"
-              px={{ base: "4", md: "6" }}
-              py="5"
+          <Box>
+            <Image
+              src="https://www.climbinganchors.com.au/assets/full/OCUNWBQ.jpg?20210309033228"
+              alt="Harness"
+              boxSize="333.25"
               boxShadow={useColorModeValue("sm", "sm-dark")}
+              objectFit="cover"
               borderRadius="lg"
-            >
-              {/* HEADING ROW */}
+              fallbackSrc="https://via.placeholder.com/300"
+            />
+          </Box>
+          <Box
+            as="section"
+            // pt={{ base: "4", md: "8" }}
+            // pb={{ base: "12", md: "24" }}
+          >
+            <Container>
+              <Box
+                bg="bg-surface"
+                px={{ base: "4", md: "6" }}
+                py="5"
+                boxShadow={useColorModeValue("sm", "sm-dark")}
+                borderRadius="lg"
+              >
+                {/* HEADING ROW */}
 
-              {equipment.map((e) => {
-                return (
-                  <>
-                    <Stack
-                      spacing="4"
-                      direction={{ base: "column", sm: "row" }}
-                      justify="space-between"
-                      p="3"
-                    >
-                      <Stack spacing="1">
-                        <HStack spacing="4">
-                          <Text fontSize="xl" fontWeight="medium">
-                            Ocun {e.models.model_name}
+                {equipment.map((e) => {
+                  return (
+                    <>
+                      <Stack
+                        spacing="4"
+                        direction={{ base: "column", sm: "row" }}
+                        justify="space-between"
+                        p="3"
+                      >
+                        <Stack spacing="1">
+                          <HStack spacing="4">
+                            <Text fontSize="xl" fontWeight="medium">
+                              Ocun {e.models.model_name}
+                            </Text>
+                            <Badge
+                              colorScheme={
+                                e.status === "Suitable" ? "green" : "red"
+                              }
+                            >
+                              {e.status}
+                            </Badge>
+                          </HStack>
+                          <Text color="muted" fontSize="sm">
+                            {e.specification}
                           </Text>
-                          <Badge
-                            colorScheme={
-                              e.status === "Suitable" ? "green" : "red"
-                            }
-                          >
-                            {e.status}
-                          </Badge>
-                        </HStack>
-                        <Text color="muted" fontSize="sm">
-                          {e.specification}
-                        </Text>
+                        </Stack>
+                        <Stack direction="row" spacing="3">
+                          <Link to={`/equipment/${e.id}/edit`}>
+                            <Button variant="primary">Edit Equipment</Button>
+                          </Link>
+                          <Button colorScheme="red" onClick={_handleDelete}>
+                            Delete
+                          </Button>
+                        </Stack>
                       </Stack>
-                      <Stack direction="row" spacing="3">
-                        <Link to={`/equipment/${e.id}/edit`}>
-                          <Button variant="primary">Edit Equipment</Button>
-                        </Link>
-                        <Button colorScheme="red" onClick={_handleDelete}>
-                          Delete
-                        </Button>
-                      </Stack>
-                    </Stack>
-                    <Divider />
+                      <Divider />
 
-                    {/* FIRST ROW STAT GROUP*/}
+                      {/* FIRST ROW STAT GROUP*/}
 
-                    <StatGroup p="3">
-                      <Stat>
-                        <StatLabel fontSize="small" color="muted">
-                          Serial Number
-                        </StatLabel>
-                        <StatNumber fontSize="large">{e.serial_num}</StatNumber>
-                      </Stat>
+                      <StatGroup p="3">
+                        <Stat>
+                          <StatLabel fontSize="small" color="muted">
+                            Serial Number
+                          </StatLabel>
+                          <StatNumber fontSize="large">
+                            {e.serial_num}
+                          </StatNumber>
+                        </Stat>
 
-                      <Stat>
-                        <StatLabel fontSize="small" color="muted">
-                          Manufacturer
-                        </StatLabel>
-                        <StatNumber fontSize="large">Ocun</StatNumber>
-                      </Stat>
+                        <Stat>
+                          <StatLabel fontSize="small" color="muted">
+                            Manufacturer
+                          </StatLabel>
+                          <StatNumber fontSize="large">Ocun</StatNumber>
+                        </Stat>
 
-                      <Stat>
-                        <StatLabel fontSize="small" color="muted">
-                          Assigned User
-                        </StatLabel>
-                        <StatNumber fontSize="large">
-                          {e.workers.first_name} {e.workers.last_name}
-                        </StatNumber>
-                      </Stat>
-                    </StatGroup>
+                        <Stat>
+                          <StatLabel fontSize="small" color="muted">
+                            Assigned User
+                          </StatLabel>
+                          <StatNumber fontSize="large">
+                            {e.workers.first_name} {e.workers.last_name}
+                          </StatNumber>
+                        </Stat>
+                      </StatGroup>
 
-                    <Divider />
+                      <Divider />
 
-                    {/* SECOND ROW STAT GROUP*/}
+                      {/* SECOND ROW STAT GROUP*/}
 
-                    <StatGroup p="3">
-                      <Stat>
-                        <StatLabel fontSize="small" color="muted">
-                          Date Of Manufacture
-                        </StatLabel>
-                        <StatNumber fontSize="large">
-                          {e.manufacture_date}
-                        </StatNumber>
-                      </Stat>
+                      <StatGroup p="3">
+                        <Stat>
+                          <StatLabel fontSize="small" color="muted">
+                            Date Of Manufacture
+                          </StatLabel>
+                          <StatNumber fontSize="large">
+                            {e.manufacture_date}
+                          </StatNumber>
+                        </Stat>
 
-                      <Stat>
-                        <StatLabel fontSize="small" color="muted">
-                          Date Of First Use
-                        </StatLabel>
-                        <StatNumber fontSize="large">May 26 2022</StatNumber>
-                      </Stat>
+                        <Stat>
+                          <StatLabel fontSize="small" color="muted">
+                            Date Of First Use
+                          </StatLabel>
+                          <StatNumber fontSize="large">May 26 2022</StatNumber>
+                        </Stat>
 
-                      <Stat>
-                        <StatLabel fontSize="small" color="muted">
-                          Lifespan To
-                        </StatLabel>
-                        <StatNumber fontSize="large">May 26 2032</StatNumber>
-                      </Stat>
-                    </StatGroup>
+                        <Stat>
+                          <StatLabel fontSize="small" color="muted">
+                            Lifespan To
+                          </StatLabel>
+                          <StatNumber fontSize="large">May 26 2032</StatNumber>
+                        </Stat>
+                      </StatGroup>
 
-                    <Divider />
+                      <Divider />
 
-                    {/* THIRD ROW STAT GROUP*/}
+                      {/* THIRD ROW STAT GROUP*/}
 
-                    <StatGroup p="3">
-                      <Stat>
-                        <StatLabel fontSize="small" color="muted">
-                          Standards
-                        </StatLabel>
-                        <StatNumber fontSize="large">
-                          EN 354, EN 795, EN 566{" "}
-                        </StatNumber>
-                      </Stat>
+                      <StatGroup p="3">
+                        <Stat>
+                          <StatLabel fontSize="small" color="muted">
+                            Standards
+                          </StatLabel>
+                          <StatNumber fontSize="large">
+                            EN 354, EN 795
+                          </StatNumber>
+                        </Stat>
 
-                      <Stat>
-                        <StatLabel fontSize="small" color="muted">
-                          Model Number
-                        </StatLabel>
-                        <StatNumber fontSize="large">03499</StatNumber>
-                      </Stat>
+                        <Stat>
+                          <StatLabel fontSize="small" color="muted">
+                            Model Number
+                          </StatLabel>
+                          <StatNumber fontSize="large">03499</StatNumber>
+                        </Stat>
 
-                      <Stat>
-                        <StatLabel fontSize="small" color="muted">
-                          Next Inspection Due
-                        </StatLabel>
-                        <StatNumber fontSize="large">
-                          {e.next_inspection_due}
-                        </StatNumber>
-                      </Stat>
-                    </StatGroup>
-                    {/* <Divider /> */}
-                    {/* <Link to={`/equipment/${e.id}/inspection/create`}>
+                        <Stat>
+                          <StatLabel fontSize="small" color="muted">
+                            Next Inspection Due
+                          </StatLabel>
+                          <StatNumber fontSize="large">
+                            {e.next_inspection_due}
+                          </StatNumber>
+                        </Stat>
+                      </StatGroup>
+                      {/* <Divider /> */}
+                      {/* <Link to={`/equipment/${params.id}/inspection/create`}>
                       <button> New Inspection</button>
                     </Link> */}
 
-                    {/* INSPECTIONS TABLE */}
+                      {/* INSPECTIONS TABLE */}
+                    </>
+                  );
+                })}
+              </Box>
+            </Container>
+          </Box>
+        </Stack>
 
-                    {inspections.map((i) => {
-                      return (
-                        <Link key={i.id} to={`/inspection/${i.id}`}>
-                          <p>Inspection Date: {i.inspection_date}</p>
-                          <p>
-                            Technician: {i.workers.first_name}{" "}
-                            {i.workers.last_name}
-                          </p>
-                          <p>Notes: {i.notes}</p>
-                          <p>
-                            Result: {i.has_passed ? "Suitable" : "Not Suitable"}
-                          </p>
-                        </Link>
-                      );
-                    })}
-                  </>
-                );
-              })}
-            </Box>
-          </Container>
-        </Box>
-      </Stack>
+        {/* INSPECTIONS TABLE */}
+
+        <Container
+          py={{
+            base: "4",
+            md: "8",
+          }}
+          px={{
+            base: "0",
+            md: 8,
+          }}
+        >
+          <Box
+            bg="bg-surface"
+            boxShadow={{
+              base: "none",
+              md: useColorModeValue("sm", "sm-dark"),
+            }}
+            borderRadius={useBreakpointValue({
+              base: "none",
+              md: "lg",
+            })}
+          >
+            <Stack spacing="5">
+              <Box
+                px={{
+                  base: "4",
+                  md: "6",
+                }}
+                pt="5"
+              >
+                <Stack
+                  direction={{
+                    base: "column",
+                    md: "row",
+                  }}
+                  justify="space-between"
+                >
+                  <Text fontSize="lg" fontWeight="medium">
+                    Record of Inspections
+                  </Text>
+                  <Link to={`/equipment/${params.id}/inspection/create`}>
+                    <Button variant="primary" rightIcon={<FiPlus />}>
+                      Add New Inspection
+                    </Button>
+                  </Link>
+                </Stack>
+              </Box>
+
+              {/* Inspections Table */}
+
+              <Box overflowX="auto">
+                <Table>
+                  <Thead>
+                    <Tr>
+                      <Th>
+                        <HStack spacing="3">
+                          <HStack spacing="1">
+                            <Text>Inspection Record</Text>
+                          </HStack>
+                        </HStack>
+                      </Th>
+                      <Th>Date of Inspection</Th>
+                      <Th>Serial Number</Th>
+                      <Th>Model</Th>
+                      <Th>Technician</Th>
+                      <Th>Result</Th>
+                      <Th>Photos</Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    {inspections.map((i) => (
+                      <Tr key={i.id}>
+                        <Td>
+                          <HStack spacing="3">
+                            <Box>
+                              <Link key={i.id} to={`/inspection/${i.id}`}>
+                                <Text fontWeight="medium">
+                                  MODEL NAME GOES HERE
+                                </Text>
+                                <Text color="muted">{i.inspection_date}</Text>
+                              </Link>
+                            </Box>
+                          </HStack>
+                        </Td>
+                        <Td>
+                          <Text color="muted">{i.inspection_date}</Text>
+                        </Td>
+                        <Td>
+                          <Text color="muted">{i.serial_num}</Text>
+                        </Td>
+                        <Td>
+                          <Text color="muted">
+                            {i.workers.first_name} {i.workers.last_name}
+                          </Text>
+                        </Td>
+                        <Td>
+                          <Text color="muted">
+                            <Text color="muted">TEST</Text>
+                          </Text>
+                        </Td>
+                        <Td>
+                          <Badge colorScheme={i.has_passed ? "green" : "red"}>
+                            {i.has_passed ? "Passed" : "Failed"}
+                          </Badge>
+                        </Td>
+                        <Td>Test</Td>
+                      </Tr>
+                    ))}
+                  </Tbody>
+                </Table>
+              </Box>
+              <Box
+                px={{
+                  base: "4",
+                  md: "6",
+                }}
+                pb="5"
+              >
+                <HStack spacing="3" justify="space-between">
+                  {!isMobile && (
+                    <Text color="muted" fontSize="sm">
+                      Showing 1 to 5 of 42 results
+                    </Text>
+                  )}
+                  <ButtonGroup
+                    spacing="3"
+                    justifyContent="space-between"
+                    width={{
+                      base: "full",
+                      md: "auto",
+                    }}
+                    variant="secondary"
+                  >
+                    <Button>Previous</Button>
+                    <Button>Next</Button>
+                  </ButtonGroup>
+                </HStack>
+              </Box>
+            </Stack>
+          </Box>
+        </Container>
+      </VStack>
+
+      {/* INSPECTIONS TABLE */}
+
+      {/* {inspections.map((i) => {
+          return (
+            <Link key={i.id} to={`/inspection/${i.id}`}>
+              <p>Inspection Date: {i.inspection_date}</p>
+              <p>
+                Technician: {i.workers.first_name} {i.workers.last_name}
+              </p>
+              <p>Notes: {i.notes}</p>
+              <p>Result: {i.has_passed ? "Suitable" : "Not Suitable"}</p>
+            </Link>
+          );
+        })} */}
     </>
   );
 }

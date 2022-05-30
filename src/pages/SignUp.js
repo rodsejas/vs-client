@@ -13,33 +13,10 @@ import {
   useBreakpointValue,
   useColorModeValue as mode,
 } from "@chakra-ui/react";
-// import { Logo } from "./Logo";
 import { SignUpForm } from "../components/SignUpForm.jsx";
 import React from "react";
-// import { useState } from "react";
-// import { supabase } from "../supabase";
 
-export default function Login() {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-
-  // const _handleEmailChange = (e) => {
-  //   setEmail(e.target.value);
-  // };
-
-  // const _handlePasswordChange = (e) => {
-  //   setPassword(e.target.value);
-  // };
-
-  // const _handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const { user, session, error } = await supabase.auth.signUp({
-  //     email: email,
-  //     password: password,
-  //   });
-  //   console.log({ user, session, error });
-  // };
-
+export default function SignUp() {
   return (
     // <form onSubmit={_handleSubmit}>
     //   <label>
@@ -88,7 +65,6 @@ export default function Login() {
               color="on-accent"
             >
               <Flex align="center" h="24">
-                {/* <Logo /> */}
                 <Box boxSize="10" m="5">
                   <Image
                     src="images/logo.png"
