@@ -5,8 +5,28 @@ import axios from "axios";
 import { BASE_URL, BASE_API } from "../Constants";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../supabase";
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  Stack,
+  useColorModeValue,
+  Container,
+  Text,
+  StackDivider,
+  InputGroup,
+  Radio,
+  RadioGroup,
+  Select,
+  Textarea,
+} from "@chakra-ui/react";
+import { FiPlus } from "react-icons/fi";
 
-export default function NewInspection() {
+export default function NewInspection(props) {
   const params = useParams();
   const navigate = useNavigate();
   const [inspection, setInspection] = useState({
@@ -104,77 +124,173 @@ export default function NewInspection() {
 
   return (
     <>
-      <form onSubmit={_handleSubmit}>
-        <label>
-          <p>Notes</p>
-          <textarea
-            placeholder="Enter the inspection notes.."
-            type="text"
-            name="notes"
-            onInput={_handleChange}
-          />
-        </label>
+      <Container
+        py={{
+          base: "4",
+          md: "8",
+        }}
+      >
+        <Stack spacing="5" divider={<StackDivider />}>
+          <Stack
+            direction={{
+              base: "column",
+              lg: "row",
+            }}
+            spacing={{
+              base: "5",
+              lg: "8",
+            }}
+          >
+            <Box flexShrink={1}>
+              <Text fontSize="lg" fontWeight="medium">
+                Inspection record
+              </Text>
+            </Box>
+            <Box
+              as="form"
+              bg="bg-surface"
+              boxShadow={useColorModeValue("sm", "sm-dark")}
+              borderRadius="lg"
+              {...props}
+            >
+              <Stack
+                spacing="5"
+                px={{
+                  base: "4",
+                  md: "6",
+                }}
+                py={{
+                  base: "5",
+                  md: "6",
+                }}
+              >
+                {/*  ZEROTH ROW */}
+                <Stack
+                  spacing="6"
+                  direction={{
+                    base: "column",
+                    md: "row",
+                  }}
+                >
+                  <FormControl id="note" isRequired>
+                    <FormLabel>Note</FormLabel>
+                    <RadioGroup defaultValue="2">
+                      <Stack spacing={5} direction="row">
+                        <Radio
+                          colorScheme="green"
+                          name="status"
+                          value="true"
+                          onChange={_handleRadioInput}
+                        >
+                          Suitable
+                        </Radio>
+                        <Radio
+                          colorScheme="red"
+                          name="status"
+                          value="false"
+                          onChange={_handleRadioInput}
+                        >
+                          Not suitable
+                        </Radio>
+                      </Stack>
+                    </RadioGroup>
+                  </FormControl>
+                </Stack>
 
-        <label>
-          <p> Attach image:</p>{" "}
-          <input
-            type="file"
-            name="images"
-            accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
-          />
-        </label>
+                {/*  FIRST ROW */}
+                <Stack
+                  spacing="6"
+                  direction={{
+                    base: "column",
+                    md: "row",
+                  }}
+                >
+                  <FormControl id="noote" isRequired>
+                    <FormLabel>Note</FormLabel>
+                    <Textarea
+                      placeholder="Enter the inspection notes.."
+                      type="text"
+                      name="notes"
+                      onInput={_handleChange}
+                    />
+                  </FormControl>
+                </Stack>
 
-        <label>
-          <p>Assign Worker</p>
-          <select name="worker_id" required onChange={_handleChange}>
-            <option hidden={true} value="">
-              Select a worker
-            </option>
-            {workers.map((worker) => (
-              <option key={worker.id} value={worker.id}>
-                {worker.first_name} {worker.last_name}
-              </option>
-            ))}
-          </select>
-        </label>
+                {/*  SECOND ROW */}
 
-        <label>
-          <p>Inspection Date</p>
-          <input
-            placeholder="Not recorded"
-            type="date"
-            max={`${moment().format("YYYY-MM-DD")}`}
-            name="inspection_date"
-            onInput={_handleChange}
-            required
-          />
-        </label>
-        <br />
-        <br />
-        <label>
-          <input
-            type="radio"
-            name="status"
-            value="true"
-            required
-            onChange={_handleRadioInput}
-          />{" "}
-          Suitable
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="status"
-            value="false"
-            onChange={_handleRadioInput}
-          />{" "}
-          Not Suitable
-        </label>
+                <Stack
+                  spacing="6"
+                  direction={{
+                    base: "column",
+                    md: "row",
+                  }}
+                >
+                  <FormControl id="manufacture_date" isRequired>
+                    <FormLabel>Date of inspection </FormLabel>
+                    <Input
+                      name="inspection_date"
+                      type="date"
+                      placeholder="Not recorded"
+                      max={`${moment().format("YYYY-MM-DD")}`}
+                      onInput={_handleChange}
+                    />
+                  </FormControl>
+                  <FormControl id="worker_id" isRequired>
+                    <FormLabel>Assign to Worker</FormLabel>
+                    <Select name="worker_id" onChange={_handleChange}>
+                      <option hidden={true}>Select a worker</option>
+                      {workers.map((worker) => (
+                        <option key={worker.id} value={worker.id}>
+                          {worker.first_name} {worker.last_name}
+                        </option>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Stack>
 
-        <br />
-        <input type="submit" value="Submit" />
-      </form>
+                {/* THIRD ROW */}
+                <Stack
+                  spacing="6"
+                  direction={{
+                    base: "column",
+                    md: "row",
+                  }}
+                >
+                  <FormControl id="image">
+                    <FormLabel>Image</FormLabel>
+                    <InputGroup>
+                      <Input
+                        name="image"
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => setImage(e.target.files[0])}
+                      />
+                    </InputGroup>
+                  </FormControl>
+                </Stack>
+              </Stack>
+              <Divider />
+              <Flex
+                direction="row-reverse"
+                py="4"
+                px={{
+                  base: "4",
+                  md: "6",
+                }}
+              >
+                <Button
+                  type="submit"
+                  variant="primary"
+                  rightIcon={<FiPlus />}
+                  onClick={_handleSubmit}
+                >
+                  Confirm
+                </Button>
+              </Flex>
+            </Box>
+          </Stack>
+        </Stack>
+      </Container>
     </>
   );
 }

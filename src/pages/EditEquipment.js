@@ -322,7 +322,7 @@ export default function EditEquipment(props) {
                   rightIcon={<FiPlus />}
                   onClick={_handleSubmit}
                 >
-                  Add
+                  Update
                 </Button>
               </Flex>
             </Box>

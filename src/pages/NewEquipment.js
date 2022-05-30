@@ -144,7 +144,6 @@ export default function NewEquipment(props) {
             }}
             justify="space-between"
           >
-            {/* <form onSubmit={_handleSubmit}> */}
             <Box flexShrink={1}>
               <Text fontSize="lg" fontWeight="medium">
                 Add Equipment To Inventory
@@ -243,6 +242,7 @@ export default function NewEquipment(props) {
                       name="manufacture_date"
                       type="date"
                       placeholder="Not recorded"
+                      max={`${moment().format("YYYY-MM-DD")}`}
                       onInput={_handleChange}
                     />
                   </FormControl>
@@ -252,6 +252,7 @@ export default function NewEquipment(props) {
                       name="date_of_first_use"
                       type="date"
                       placeholder="Has not occurred yet"
+                      max={`${moment().format("YYYY-MM-DD")}`}
                       onInput={_handleChange}
                     />
                   </FormControl>
