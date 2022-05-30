@@ -5,14 +5,20 @@ import {
   DrawerOverlay,
   Flex,
   useDisclosure,
+  Image,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { Logo } from "./Logo";
 import { Sidebar } from "./Sidebar";
+import { useLocation } from "react-router-dom";
 import { ToggleButton } from "./ToggleButton";
+
+const withoutNavbarRoutes = ["/signin", "/signup"];
 
 export const Navbar = () => {
   const { isOpen, onToggle, onClose } = useDisclosure();
+  const { pathname } = useLocation();
+
+  if (withoutNavbarRoutes.some((item) => pathname.includes(item))) return null;
   return (
     <Box
       width="full"
@@ -24,7 +30,12 @@ export const Navbar = () => {
       bg="bg-accent"
     >
       <Flex justify="space-between">
-        <Logo />
+        <Image
+          src="images/logo.png"
+          alt="Vertical Safety"
+          objectFit="contain"
+          boxSize="10"
+        />
         <ToggleButton
           isOpen={isOpen}
           aria-label="Open Menu"

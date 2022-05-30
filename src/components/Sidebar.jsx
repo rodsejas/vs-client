@@ -7,6 +7,8 @@ import {
   InputLeftElement,
   Stack,
   Link,
+  Image,
+  Box,
   Button,
 } from "@chakra-ui/react";
 import * as React from "react";
@@ -17,17 +19,22 @@ import {
   FiHelpCircle,
   FiHome,
   FiSearch,
-  FiSettings,
   FiUsers,
   FiLogOut,
 } from "react-icons/fi";
-import { Logo } from "./Logo";
 import { NavButton } from "./NavButton";
 import { UserProfile } from "./UserProfile";
 import { Link as LinkRoutes } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { supabase } from "../supabase";
 
+const withoutSidebarRoutes = ["/signin", "/signup"];
+
 export const Sidebar = (props) => {
+  const { pathname } = useLocation();
+
+  if (withoutSidebarRoutes.some((item) => pathname.includes(item))) return null;
+
   const _handleLogout = async (e) => {
     e.preventDefault();
     const { error } = await supabase.auth.signOut();
@@ -64,7 +71,13 @@ export const Sidebar = (props) => {
           }}
           shouldWrapChildren
         >
-          <Logo />
+          <Box boxSize="8" m="5">
+            <Image
+              src="images/logo.png"
+              alt="Vertical Safety"
+              objectFit="cover"
+            />
+          </Box>
           <InputGroup>
             <InputLeftElement pointerEvents="none">
               <Icon as={FiSearch} color="on-accent" boxSize="5" />
@@ -99,14 +112,13 @@ export const Sidebar = (props) => {
             sm: "6",
           }}
         >
-          <Stack spacing="1">
+          <Link href="https://github.com/rodsejas/vs-client#readme" isExternal>
             <NavButton label="Help" icon={FiHelpCircle} />
-            <NavButton label="Settings" icon={FiSettings} />
-          </Stack>
+          </Link>
           <Divider borderColor="bg-accent-subtle" />
           <UserProfile
             name="Rod Sejas"
-            image="https://media-exp1.licdn.com/dms/image/C5603AQGmgYNLA-cUIA/profile-displayphoto-shrink_800_800/0/1648760593635?e=1658966400&v=beta&t=6pKE6QGB6Z2MIkH4ZP0SXoQzByx25RMrc3yryiT7kLo"
+            // image="https://media-exp1.licdn.com/dms/image/C5603AQGmgYNLA-cUIA/profile-displayphoto-shrink_800_800/0/1648760593635?e=1658966400&v=beta&t=6pKE6QGB6Z2MIkH4ZP0SXoQzByx25RMrc3yryiT7kLo"
             email="rod@vs-app.com"
           />
           <Button

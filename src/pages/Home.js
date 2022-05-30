@@ -11,60 +11,62 @@ import { Card } from "../components/Card";
 
 const Home = () => {
   return (
-    <Container py="8" flex="1">
-      <Stack
-        spacing={{
-          base: "8",
-          lg: "6",
-        }}
-      >
-        <Stack
-          spacing="4"
-          direction={{
-            base: "column",
-            lg: "row",
-          }}
-          justify="space-between"
-          align={{
-            base: "start",
-            lg: "center",
-          }}
-        >
-          <Stack spacing="1">
-            <Heading
-              size={useBreakpointValue({
-                base: "xs",
-                lg: "sm",
-              })}
-              fontWeight="medium"
-              textAlign="left"
-            >
-              Dashboard
-            </Heading>
-            <Text color="muted">All important metrics at a glance</Text>
-          </Stack>
-        </Stack>
+    <>
+      <Container py="8" flex="1">
         <Stack
           spacing={{
-            base: "5",
+            base: "8",
             lg: "6",
           }}
         >
-          <SimpleGrid
-            columns={{
-              base: 1,
-              md: 3,
+          <Stack
+            spacing="4"
+            direction={{
+              base: "column",
+              lg: "row",
             }}
-            gap="6"
+            justify="space-between"
+            align={{
+              base: "start",
+              lg: "center",
+            }}
           >
-            <Card />
-            <Card />
-            <Card />
-          </SimpleGrid>
+            <Stack spacing="1">
+              <Heading
+                size={useBreakpointValue({
+                  base: "xs",
+                  lg: "sm",
+                })}
+                fontWeight="medium"
+                textAlign="left"
+              >
+                Dashboard
+              </Heading>
+              <Text color="muted">Metrics at a glance</Text>
+            </Stack>
+          </Stack>
+          <Stack
+            spacing={{
+              base: "5",
+              lg: "6",
+            }}
+          >
+            <SimpleGrid
+              columns={{
+                base: 1,
+                md: 3,
+              }}
+              gap="6"
+            >
+              <Card />
+              <Card />
+              <Card />
+            </SimpleGrid>
+          </Stack>
+          <Card minH="sm" />
         </Stack>
-        <Card minH="sm" />
-      </Stack>
-    </Container>
+      </Container>
+    </>
   );
 };
 

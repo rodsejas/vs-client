@@ -19,6 +19,7 @@ import {
   StatGroup,
   StatLabel,
   Badge,
+  Image,
 } from "@chakra-ui/react";
 
 export default function Equipment() {
@@ -101,174 +102,190 @@ export default function Equipment() {
     //   })}
     // </div>
     <>
-      <Box
-        as="section"
+      <Stack
+        spacing={2}
         pt={{ base: "4", md: "8" }}
-        pb={{ base: "12", md: "24" }}
+        pl={{ base: "8", md: "16" }}
+        direction="row"
       >
-        <Container>
-          <Box
-            bg="bg-surface"
-            px={{ base: "4", md: "6" }}
-            py="5"
+        <Box>
+          <Image
+            src="https://www.climbinganchors.com.au/assets/full/OCUNWBQ.jpg?20210309033228"
+            alt="Harness"
+            boxSize="333.25"
             boxShadow={useColorModeValue("sm", "sm-dark")}
+            objectFit="cover"
             borderRadius="lg"
-          >
-            {/* HEADING ROW */}
+            fallbackSrc="https://via.placeholder.com/300"
+          />
+        </Box>
+        <Box
+          as="section"
+          // pt={{ base: "4", md: "8" }}
+          // pb={{ base: "12", md: "24" }}
+        >
+          <Container>
+            <Box
+              bg="bg-surface"
+              px={{ base: "4", md: "6" }}
+              py="5"
+              boxShadow={useColorModeValue("sm", "sm-dark")}
+              borderRadius="lg"
+            >
+              {/* HEADING ROW */}
 
-            {equipment.map((e) => {
-              return (
-                <div key={e.id}>
-                  <Stack
-                    spacing="4"
-                    direction={{ base: "column", sm: "row" }}
-                    justify="space-between"
-                    p="3"
-                  >
-                    <Stack spacing="1">
-                      <HStack spacing="4">
-                        <Text fontSize="xl" fontWeight="medium">
-                          Ocun Pro-O-Strong 20 / 80cm
+              {equipment.map((e) => {
+                return (
+                  <>
+                    <Stack
+                      spacing="4"
+                      direction={{ base: "column", sm: "row" }}
+                      justify="space-between"
+                      p="3"
+                    >
+                      <Stack spacing="1">
+                        <HStack spacing="4">
+                          <Text fontSize="xl" fontWeight="medium">
+                            Ocun {e.models.model_name}
+                          </Text>
+                          <Badge
+                            colorScheme={
+                              e.status === "Suitable" ? "green" : "red"
+                            }
+                          >
+                            {e.status}
+                          </Badge>
+                        </HStack>
+                        <Text color="muted" fontSize="sm">
+                          {e.specification}
                         </Text>
-                        <Badge
-                          colorScheme={
-                            e.status === "Suitable" ? "green" : "red"
-                          }
-                        >
-                          {e.status}
-                        </Badge>
-                      </HStack>
-                      <Text color="muted" fontSize="sm">
-                        All details in the overview
-                      </Text>
-                    </Stack>
-                    <Stack direction="row" spacing="3">
-                      <Link to={`/equipment/${e.id}/edit`}>
-                        <Button variant="primary">
-                          Edit Equipment Details
+                      </Stack>
+                      <Stack direction="row" spacing="3">
+                        <Link to={`/equipment/${e.id}/edit`}>
+                          <Button variant="primary">Edit Equipment</Button>
+                        </Link>
+                        <Button colorScheme="red" onClick={_handleDelete}>
+                          Delete
                         </Button>
-                      </Link>
-                      <Button colorScheme="red" onClick={_handleDelete}>
-                        Delete
-                      </Button>
+                      </Stack>
                     </Stack>
-                  </Stack>
-                  <Divider />
+                    <Divider />
 
-                  {/* FIRST ROW STAT GROUP*/}
+                    {/* FIRST ROW STAT GROUP*/}
 
-                  <StatGroup p="3">
-                    <Stat>
-                      <StatLabel fontSize="small" color="muted">
-                        Serial Number
-                      </StatLabel>
-                      <StatNumber fontSize="large">{e.serial_num}</StatNumber>
-                    </Stat>
+                    <StatGroup p="3">
+                      <Stat>
+                        <StatLabel fontSize="small" color="muted">
+                          Serial Number
+                        </StatLabel>
+                        <StatNumber fontSize="large">{e.serial_num}</StatNumber>
+                      </Stat>
 
-                    <Stat>
-                      <StatLabel fontSize="small" color="muted">
-                        Manufacturer
-                      </StatLabel>
-                      <StatNumber fontSize="large">Ocun</StatNumber>
-                    </Stat>
+                      <Stat>
+                        <StatLabel fontSize="small" color="muted">
+                          Manufacturer
+                        </StatLabel>
+                        <StatNumber fontSize="large">Ocun</StatNumber>
+                      </Stat>
 
-                    <Stat>
-                      <StatLabel fontSize="small" color="muted">
-                        Assigned User
-                      </StatLabel>
-                      <StatNumber fontSize="large">
-                        {e.workers.first_name} {e.workers.last_name}
-                      </StatNumber>
-                    </Stat>
-                  </StatGroup>
+                      <Stat>
+                        <StatLabel fontSize="small" color="muted">
+                          Assigned User
+                        </StatLabel>
+                        <StatNumber fontSize="large">
+                          {e.workers.first_name} {e.workers.last_name}
+                        </StatNumber>
+                      </Stat>
+                    </StatGroup>
 
-                  <Divider />
+                    <Divider />
 
-                  {/* SECOND ROW STAT GROUP*/}
+                    {/* SECOND ROW STAT GROUP*/}
 
-                  <StatGroup p="3">
-                    <Stat>
-                      <StatLabel fontSize="small" color="muted">
-                        Date Of Manufacture
-                      </StatLabel>
-                      <StatNumber fontSize="large">
-                        {e.manufacture_date}
-                      </StatNumber>
-                    </Stat>
+                    <StatGroup p="3">
+                      <Stat>
+                        <StatLabel fontSize="small" color="muted">
+                          Date Of Manufacture
+                        </StatLabel>
+                        <StatNumber fontSize="large">
+                          {e.manufacture_date}
+                        </StatNumber>
+                      </Stat>
 
-                    <Stat>
-                      <StatLabel fontSize="small" color="muted">
-                        Date Of First Use
-                      </StatLabel>
-                      <StatNumber fontSize="large">May 26 2022 </StatNumber>
-                    </Stat>
+                      <Stat>
+                        <StatLabel fontSize="small" color="muted">
+                          Date Of First Use
+                        </StatLabel>
+                        <StatNumber fontSize="large">May 26 2022</StatNumber>
+                      </Stat>
 
-                    <Stat>
-                      <StatLabel fontSize="small" color="muted">
-                        Lifespan To
-                      </StatLabel>
-                      <StatNumber fontSize="large">May 26 2032</StatNumber>
-                    </Stat>
-                  </StatGroup>
+                      <Stat>
+                        <StatLabel fontSize="small" color="muted">
+                          Lifespan To
+                        </StatLabel>
+                        <StatNumber fontSize="large">May 26 2032</StatNumber>
+                      </Stat>
+                    </StatGroup>
 
-                  <Divider />
+                    <Divider />
 
-                  {/* THIRD ROW STAT GROUP*/}
+                    {/* THIRD ROW STAT GROUP*/}
 
-                  <StatGroup p="3">
-                    <Stat>
-                      <StatLabel fontSize="small" color="muted">
-                        Standards
-                      </StatLabel>
-                      <StatNumber fontSize="large">
-                        EN 354, EN 795, EN 566{" "}
-                      </StatNumber>
-                    </Stat>
+                    <StatGroup p="3">
+                      <Stat>
+                        <StatLabel fontSize="small" color="muted">
+                          Standards
+                        </StatLabel>
+                        <StatNumber fontSize="large">
+                          EN 354, EN 795, EN 566{" "}
+                        </StatNumber>
+                      </Stat>
 
-                    <Stat>
-                      <StatLabel fontSize="small" color="muted">
-                        Model Number
-                      </StatLabel>
-                      <StatNumber fontSize="large">03499</StatNumber>
-                    </Stat>
+                      <Stat>
+                        <StatLabel fontSize="small" color="muted">
+                          Model Number
+                        </StatLabel>
+                        <StatNumber fontSize="large">03499</StatNumber>
+                      </Stat>
 
-                    <Stat>
-                      <StatLabel fontSize="small" color="muted">
-                        Next Inspection Due
-                      </StatLabel>
-                      <StatNumber fontSize="large">
-                        {e.next_inspection_due}
-                      </StatNumber>
-                    </Stat>
-                  </StatGroup>
-                  <Divider />
-                  <Link to={`/equipment/${e.id}/inspection/create`}>
-                    <button> New Inspection</button>
-                  </Link>
+                      <Stat>
+                        <StatLabel fontSize="small" color="muted">
+                          Next Inspection Due
+                        </StatLabel>
+                        <StatNumber fontSize="large">
+                          {e.next_inspection_due}
+                        </StatNumber>
+                      </Stat>
+                    </StatGroup>
+                    {/* <Divider /> */}
+                    {/* <Link to={`/equipment/${e.id}/inspection/create`}>
+                      <button> New Inspection</button>
+                    </Link> */}
 
-                  {/* INSPECTIONS TABLE */}
+                    {/* INSPECTIONS TABLE */}
 
-                  {inspections.map((i) => {
-                    return (
-                      <Link key={i.id} to={`/inspection/${i.id}`}>
-                        <p>Inspection Date: {i.inspection_date}</p>
-                        <p>
-                          Technician: {i.workers.first_name}{" "}
-                          {i.workers.last_name}
-                        </p>
-                        <p>Notes: {i.notes}</p>
-                        <p>
-                          Result: {i.has_passed ? "Suitable" : "Not Suitable"}
-                        </p>
-                      </Link>
-                    );
-                  })}
-                </div>
-              );
-            })}
-          </Box>
-        </Container>
-      </Box>
+                    {inspections.map((i) => {
+                      return (
+                        <Link key={i.id} to={`/inspection/${i.id}`}>
+                          <p>Inspection Date: {i.inspection_date}</p>
+                          <p>
+                            Technician: {i.workers.first_name}{" "}
+                            {i.workers.last_name}
+                          </p>
+                          <p>Notes: {i.notes}</p>
+                          <p>
+                            Result: {i.has_passed ? "Suitable" : "Not Suitable"}
+                          </p>
+                        </Link>
+                      );
+                    })}
+                  </>
+                );
+              })}
+            </Box>
+          </Container>
+        </Box>
+      </Stack>
     </>
   );
 }

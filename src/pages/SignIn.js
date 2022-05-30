@@ -1,72 +1,20 @@
-// import React from "react";
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { supabase } from "../supabase";
-
-// export default function Login(props) {
-//   const navigate = useNavigate();
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-
-//   const _handleEmailChange = (e) => {
-//     setEmail(e.target.value);
-//   };
-
-//   const _handlePasswordChange = (e) => {
-//     setPassword(e.target.value);
-//   };
-
-//   const _handleSubmit = async (e) => {
-//     e.preventDefault();
-//     const { user, session, error } = await supabase.auth.signIn({
-//       email: email,
-//       password: password,
-//     });
-//     if (!error && user) {
-//       props.setIsLoggedIn(true);
-//       navigate("/");
-//     }
-//     console.log({ user, session, error });
-//   };
-
-//   return (
-//     <form onSubmit={_handleSubmit}>
-//       <label>
-//         <p>Email address</p>
-//         <input type="email" onChange={_handleEmailChange} value={email} />
-//       </label>
-//       <label>
-//         <p>Password</p>
-//         <input
-//           type="password"
-//           onChange={_handlePasswordChange}
-//           value={password}
-//         />
-//       </label>
-//       <br />
-//       <button type="submit">Login</button>
-//     </form>
-//   );
-// }
-
 import {
   Box,
   Button,
   Checkbox,
   Container,
-  // Divider,
   FormControl,
   FormLabel,
   Heading,
   HStack,
   Input,
+  Image,
   Stack,
   Text,
   useBreakpointValue,
   useColorModeValue,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { Logo } from "../components/SignInLogo";
 // import { OAuthButtonGroup } from "../components/OAuthButtonGroup";
 // import { PasswordField } from "../components/PasswordField";
 import { useState } from "react";
@@ -113,8 +61,14 @@ const SignIn = (props) => {
       }}
     >
       <Stack spacing="8">
-        <Stack spacing="6">
-          <Logo />
+        <Stack spacing="6" align="center">
+          <Box boxSize="10" m="5">
+            <Image
+              src="images/logo_blue.png"
+              alt="Vertical Safety"
+              objectFit="cover"
+            />
+          </Box>
           <Stack
             spacing={{
               base: "2",
