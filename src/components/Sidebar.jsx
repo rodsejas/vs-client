@@ -7,6 +7,8 @@ import {
   InputLeftElement,
   Stack,
   Link,
+  Image,
+  Box,
   Button,
 } from "@chakra-ui/react";
 import * as React from "react";
@@ -17,11 +19,9 @@ import {
   FiHelpCircle,
   FiHome,
   FiSearch,
-  FiSettings,
   FiUsers,
   FiLogOut,
 } from "react-icons/fi";
-import { Logo } from "./Logo";
 import { NavButton } from "./NavButton";
 import { UserProfile } from "./UserProfile";
 import { Link as LinkRoutes } from "react-router-dom";
@@ -64,7 +64,13 @@ export const Sidebar = (props) => {
           }}
           shouldWrapChildren
         >
-          <Logo />
+          <Box boxSize="8" m="5">
+            <Image
+              src="images/logo.png"
+              alt="Vertical Safety"
+              objectFit="cover"
+            />
+          </Box>
           <InputGroup>
             <InputLeftElement pointerEvents="none">
               <Icon as={FiSearch} color="on-accent" boxSize="5" />
@@ -99,10 +105,9 @@ export const Sidebar = (props) => {
             sm: "6",
           }}
         >
-          <Stack spacing="1">
+          <Link href="https://github.com/rodsejas/vs-client#readme" isExternal>
             <NavButton label="Help" icon={FiHelpCircle} />
-            <NavButton label="Settings" icon={FiSettings} />
-          </Stack>
+          </Link>
           <Divider borderColor="bg-accent-subtle" />
           <UserProfile
             name="Rod Sejas"
