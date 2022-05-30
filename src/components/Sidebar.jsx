@@ -25,9 +25,16 @@ import {
 import { NavButton } from "./NavButton";
 import { UserProfile } from "./UserProfile";
 import { Link as LinkRoutes } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { supabase } from "../supabase";
 
+const withouSidebarRoutes = ["/signin", "/signup"];
+
 export const Sidebar = (props) => {
+  const { pathname } = useLocation();
+
+  if (withouSidebarRoutes.some((item) => pathname.includes(item))) return null;
+
   const _handleLogout = async (e) => {
     e.preventDefault();
     const { error } = await supabase.auth.signOut();
