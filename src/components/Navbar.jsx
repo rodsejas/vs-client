@@ -5,6 +5,7 @@ import {
   DrawerOverlay,
   Flex,
   useDisclosure,
+  Image,
 } from "@chakra-ui/react";
 import * as React from "react";
 import { Logo } from "./Logo";
@@ -24,7 +25,12 @@ export const Navbar = () => {
       bg="bg-accent"
     >
       <Flex justify="space-between">
-        <Logo />
+        <Image
+          src="images/logo.png"
+          alt="Vertical Safety"
+          objectFit="contain"
+          boxSize="10"
+        />
         <ToggleButton
           isOpen={isOpen}
           aria-label="Open Menu"
