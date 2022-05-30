@@ -118,7 +118,7 @@ export default function Equipment() {
 
             {equipment.map((e) => {
               return (
-                <>
+                <div key={e.id}>
                   <Stack
                     spacing="4"
                     direction={{ base: "column", sm: "row" }}
@@ -263,7 +263,7 @@ export default function Equipment() {
                       </Link>
                     );
                   })}
-                </>
+                </div>
               );
             })}
           </Box>

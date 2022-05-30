@@ -116,11 +116,11 @@ export default function EditModel(props) {
               base: "5",
               lg: "8",
             }}
-            justify="space-between"
+            justify="space-around"
           >
             <Box flexShrink={1}>
               <Text fontSize="lg" fontWeight="medium">
-                Add Model To Inventory
+                Edit Model
               </Text>
             </Box>
             <Box
@@ -330,7 +330,7 @@ export default function EditModel(props) {
                   rightIcon={<FiPlus />}
                   onClick={_handleSubmit}
                 >
-                  Add
+                  Update
                 </Button>
               </Flex>
             </Box>
