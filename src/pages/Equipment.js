@@ -264,7 +264,7 @@ export default function Equipment() {
 
                     {/* INSPECTIONS TABLE */}
 
-                    {/* {inspections.map((i) => {
+                    {inspections.map((i) => {
                       return (
                         <Link key={i.id} to={`/inspection/${i.id}`}>
                           <p>Inspection Date: {i.inspection_date}</p>
@@ -278,7 +278,7 @@ export default function Equipment() {
                           </p>
                         </Link>
                       );
-                    })} */}
+                    })}
                   </>
                 );
               })}

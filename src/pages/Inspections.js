@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL, BASE_API } from "../Constants";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import {
   Box,
   Button,
@@ -14,7 +14,7 @@ import {
   useBreakpointValue,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { FiPlus } from "react-icons/fi";
+// import { FiPlus } from "react-icons/fi";
 
 import InspectionsTable from "../components/InspectionsTable";
 
