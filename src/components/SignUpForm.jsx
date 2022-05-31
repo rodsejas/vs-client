@@ -20,9 +20,6 @@ export const SignUpForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log("Email", email);
-  console.log("Password", password);
-
   const _handleEmailChange = (e) => {
     setEmail(e.target.value);
   };

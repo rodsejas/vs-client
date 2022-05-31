@@ -18,22 +18,6 @@ import React from "react";
 
 export default function SignUp() {
   return (
-    // <form onSubmit={_handleSubmit}>
-    //   <label>
-    //     <p>Email address</p>
-    //     <input type="email" onChange={_handleEmailChange} value={email} />
-    //   </label>
-    //   <label>
-    //     <p>Password</p>
-    //     <input
-    //       type="password"
-    //       onChange={_handlePasswordChange}
-    //       value={password}
-    //     />
-    //   </label>
-    //   <br />
-    //   <button type="submit">Sign Up</button>
-    // </form>
     <Flex
       minH={{
         base: "auto",
@@ -42,7 +26,7 @@ export default function SignUp() {
       bgGradient={useBreakpointValue({
         md: mode(
           "linear(to-r, blue.600 50%, white 50%)",
-          "linear(to-r, blue.600 50%, gray.900 50%)"
+          "linear(to-r, blue.600 50%, white 50%)"
         ),
       })}
     >
@@ -100,12 +84,12 @@ export default function SignUp() {
                       borderColor="on-accent"
                     >
                       <Avatar
-                        name="Ryan Florence"
-                        src="https://bit.ly/ryan-florence"
+                        name="Rod S"
+                        src="https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/vs/workers/rod-avatar.jpg"
                       />
                       <Avatar
-                        name="Segun Adebayo"
-                        src="https://bit.ly/sage-adebayo"
+                        name="Dhaya S"
+                        src="https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/vs/workers/Dhaya-avatar.jpeg"
                       />
                       <Avatar
                         name="Kent Dodds"

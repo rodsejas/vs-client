@@ -1,8 +1,8 @@
-import { Avatar, Box, Flex, useColorModeValue } from '@chakra-ui/react'
-import * as React from 'react'
+import { Avatar, Box, Flex, useColorModeValue } from "@chakra-ui/react";
+import * as React from "react";
 
 export const CardWithAvatar = (props) => {
-  const { children, avatarProps, ...rest } = props
+  const { children, avatarProps } = props;
   return (
     <Flex
       direction="column"
@@ -10,15 +10,20 @@ export const CardWithAvatar = (props) => {
       rounded="md"
       padding="8"
       position="relative"
-      bg={useColorModeValue('white', 'gray.700')}
+      bg={useColorModeValue("white", "gray.700")}
       shadow={{
-        md: 'base',
+        md: "base",
       }}
-      {...rest}
     >
-      <Box position="absolute" inset="0" height="20" bg="blue.600" roundedTop="inherit" />
-      <Avatar size="xl" {...avatarProps} />
+      <Box
+        position="absolute"
+        inset="0"
+        height="20"
+        bg="blue.600"
+        roundedTop="inherit"
+      />
+      <Avatar size="xl" src={avatarProps.photo} />
       {children}
     </Flex>
-  )
-}
+  );
+};

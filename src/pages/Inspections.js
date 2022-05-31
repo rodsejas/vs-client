@@ -163,25 +163,25 @@ export default function Inspections() {
                 <Stack>
                   <Skeleton
                     height="25px"
-                    width="75vw"
+                    width="60vw"
                     startColor="#8fadc9"
                     endColor="#cadbeb"
                   />
                   <Skeleton
                     height="25px"
-                    width="75vw"
+                    width="60vw"
                     startColor="#8fadc9"
                     endColor="#cadbeb"
                   />
                   <Skeleton
                     height="25px"
-                    width="75vw"
+                    width="60vw"
                     startColor="#8fadc9"
                     endColor="#cadbeb"
                   />
                   <Skeleton
                     height="25px"
-                    width="75vw"
+                    width="60vw"
                     startColor="#8fadc9"
                     endColor="#cadbeb"
                   />
