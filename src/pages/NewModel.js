@@ -163,6 +163,15 @@ export default function NewModel(props) {
                       onInput={_handleChange}
                     />
                   </FormControl>
+                  <FormControl id="manufacturer" isRequired>
+                    <FormLabel>Manufacturer</FormLabel>
+                    <Input
+                      type="text"
+                      name="manufacturer"
+                      placeholder="Ocun"
+                      onInput={_handleChange}
+                    />
+                  </FormControl>
                 </Stack>
 
                 {/*  SECOND ROW */}
