@@ -11,9 +11,8 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import * as React from "react";
+import moment from "moment";
 import { Link } from "react-router-dom";
-
-// import Equipment from "../pages/Equipment";
 
 const EquipmentsTable = (props) => {
   const { equipments } = props;
@@ -32,7 +31,6 @@ const EquipmentsTable = (props) => {
           <Th>Assigned Worker</Th>
           <Th>Lifespan To</Th>
           <Th>Inspection Due</Th>
-          <Th>Test</Th>
           <Th>Status</Th>
         </Tr>
       </Thead>
@@ -58,14 +56,17 @@ const EquipmentsTable = (props) => {
               <Text color="muted">{equipment.workers.first_name}</Text>
             </Td>
             <Td>
-              <Text color="muted">{equipment.end_of_life}</Text>
+              <Text color="muted">
+                {moment(equipment.end_of_life).format("MMM Do YYYY")}
+              </Text>
             </Td>
             <Td>
               <Text color="muted">
-                <Text color="muted">{equipment.next_inspection_due}</Text>
+                <Text color="muted">
+                  {moment(equipment.next_inspection_due).format("MMM Do YYYY")}
+                </Text>
               </Text>
             </Td>
-            <Td>Test</Td>
             <Td>
               <Badge
                 colorScheme={equipment.status === "Suitable" ? "green" : "red"}
