@@ -90,7 +90,7 @@ export default function Equipment() {
             {equipment.map((e) => {
               return (
                 <Image
-                  src={`https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/${e.image}`}
+                  src={`https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/${e.models.image}`}
                   alt="Equipment Image"
                   boxSize="333.25"
                   boxShadow="sm"
