@@ -194,7 +194,7 @@ export default function NewEquipment(props) {
                     md: "row",
                   }}
                 >
-                  <FormControl id="serial_num">
+                  <FormControl id="serial_num" isRequired>
                     <FormLabel>Serial Number</FormLabel>
                     <Input
                       type="text"
