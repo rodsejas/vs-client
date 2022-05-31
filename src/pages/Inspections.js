@@ -41,23 +41,6 @@ export default function Inspections() {
 
   return (
     <>
-      {/* {inspections.map((i) => {
-        return (
-          <Link key={i.id} to={`/inspection/${i.id}`}>
-            <div>
-              <p>{i.inspection_date}</p>
-              <p>{i.equipments.serial_num}</p>
-              <p>{i.equipments.models.model_name}</p>
-              <p>
-                {i.workers.first_name} {i.workers.last_name}
-              </p>
-              <p> {i.has_passed ? "Suitable" : "Not suitable"}</p>
-              <p>.............</p>
-            </div>
-          </Link>
-        );
-      })} */}
-
       <Container
         py={{
           base: "4",

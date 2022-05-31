@@ -1,5 +1,5 @@
 import React from "react";
-// import moment from "moment";
+import moment from "moment";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
@@ -227,7 +227,7 @@ export default function Equipment() {
                             Date Of Manufacture
                           </StatLabel>
                           <StatNumber fontSize="large">
-                            {e.manufacture_date}
+                            {moment(e.manufacture_date).format("MMM Do YYYY")}
                           </StatNumber>
                         </Stat>
 
@@ -235,14 +235,18 @@ export default function Equipment() {
                           <StatLabel fontSize="small" color="muted">
                             Date Of First Use
                           </StatLabel>
-                          <StatNumber fontSize="large">May 26 2022</StatNumber>
+                          <StatNumber fontSize="large">
+                            {moment(e.date_of_first_use).format("MMM Do YYYY")}
+                          </StatNumber>
                         </Stat>
 
                         <Stat>
                           <StatLabel fontSize="small" color="muted">
                             Lifespan To
                           </StatLabel>
-                          <StatNumber fontSize="large">May 26 2032</StatNumber>
+                          <StatNumber fontSize="large">
+                            {moment(e.end_of_life).format("MMM Do YYYY")}
+                          </StatNumber>
                         </Stat>
                       </StatGroup>
 
@@ -272,7 +276,9 @@ export default function Equipment() {
                             Next Inspection Due
                           </StatLabel>
                           <StatNumber fontSize="large">
-                            {e.next_inspection_due}
+                            {moment(e.next_inspection_due).format(
+                              "MMM Do YYYY"
+                            )}
                           </StatNumber>
                         </Stat>
                       </StatGroup>
@@ -366,17 +372,21 @@ export default function Equipment() {
                         <Td>
                           <HStack spacing="3">
                             <Box>
-                              <Link key={i.id} to={`/inspection/${i.id}`}>
-                                <Text fontWeight="medium">
-                                  MODEL NAME GOES HERE
-                                </Text>
-                                <Text color="muted">{i.inspection_date}</Text>
-                              </Link>
+                              <Text fontWeight="medium">
+                                MODEL NAME GOES HERE
+                              </Text>
+                              <Text color="muted">
+                                {moment(i.inspection_date).format(
+                                  "MMM Do YYYY"
+                                )}
+                              </Text>
                             </Box>
                           </HStack>
                         </Td>
                         <Td>
-                          <Text color="muted">{i.inspection_date}</Text>
+                          <Text color="muted">
+                            {moment(i.inspection_date).format("MMM Do YYYY")}
+                          </Text>
                         </Td>
                         <Td>
                           <Text color="muted">{i.serial_num}</Text>

@@ -13,6 +13,7 @@ import {
   Link,
 } from "@chakra-ui/react";
 import * as React from "react";
+import moment from "moment";
 // import { Link } from "react-router-dom";
 
 const InspectionsTable = (props) => {
@@ -28,7 +29,7 @@ const InspectionsTable = (props) => {
               </HStack>
             </HStack>
           </Th>
-          <Th>Date</Th>
+          <Th>Date of Inspection</Th>
           <Th>Serial Number</Th>
           <Th>Technician</Th>
           <Th>Notes</Th>
@@ -42,17 +43,19 @@ const InspectionsTable = (props) => {
             <Td>
               <HStack spacing="3">
                 <Box>
-                  {/* <Link key={i.id} to={`/inspection/${i.id}`}> */}
                   <Text fontWeight="medium">
                     {i.equipments.models.model_name}
                   </Text>
-                  <Text color="muted">{i.inspection_date}</Text>
-                  {/* </Link> */}
+                  <Text color="muted">
+                    {moment(i.inspection_date).format("MMM Do YYYY")}
+                  </Text>
                 </Box>
               </HStack>
             </Td>
             <Td>
-              <Text color="muted">{i.inspection_date}</Text>
+              <Text color="muted">
+                {moment(i.inspection_date).format("MMM Do YYYY")}
+              </Text>
             </Td>
             <Td>
               <Text color="muted">{i.equipments.serial_num}</Text>
