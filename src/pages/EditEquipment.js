@@ -277,7 +277,7 @@ export default function EditEquipment(props) {
                   }}
                 >
                   <FormControl id="manufacture_date" isRequired>
-                    <FormLabel>Date Of Manufacture</FormLabel>
+                    <FormLabel>Manufacture Date</FormLabel>
                     <Input
                       name="manufacture_date"
                       type="date"
