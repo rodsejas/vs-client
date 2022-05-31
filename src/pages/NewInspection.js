@@ -71,9 +71,15 @@ export default function NewInspection(props) {
 
     const inspection_frequency = equipment[0].models.inspection_frequency;
     const nextInspectionDue = setNextInspectionDue(inspection_frequency);
-    const patchData = { next_inspection_due: nextInspectionDue };
+    let patchData = { next_inspection_due: nextInspectionDue };
 
-    // updating the equipment's next inspection due date
+    if (inspection.has_passed) {
+      patchData = { ...patchData, status: "Suitable" };
+    } else {
+      patchData = { ...patchData, status: "Not suitable" };
+    }
+
+    // updating the equipment's next inspection due date and status
     const patchUrl = `${BASE_URL}${BASE_API}/equipment/${params.id}/inspections`;
     try {
       await axios.patch(patchUrl, patchData);
@@ -81,7 +87,7 @@ export default function NewInspection(props) {
       console.log(error);
     }
 
-    // uploading inspection image to supabase "inspection" bucket
+    // // uploading inspection image to supabase "inspection" bucket
     let imageData;
 
     if (image) {
@@ -100,7 +106,6 @@ export default function NewInspection(props) {
     }
 
     let postData = { ...inspection, image: imageData };
-    console.log(postData);
 
     const url = `${BASE_URL}${BASE_API}/inspections`;
     try {

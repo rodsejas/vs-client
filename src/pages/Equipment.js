@@ -23,7 +23,6 @@ import {
   Badge,
   Image,
   Avatar,
-  ButtonGroup,
   Table,
   Tbody,
   Td,
@@ -389,39 +388,12 @@ export default function Equipment() {
                       Showing {inspections.length} results
                     </Text>
                   )}
-                  <ButtonGroup
-                    spacing="3"
-                    justifyContent="space-between"
-                    width={{
-                      base: "full",
-                      md: "auto",
-                    }}
-                    variant="secondary"
-                  >
-                    <Button>Previous</Button>
-                    <Button>Next</Button>
-                  </ButtonGroup>
                 </HStack>
               </Box>
             </Stack>
           </Box>
         </Container>
       </VStack>
-
-      {/* INSPECTIONS TABLE */}
-
-      {/* {inspections.map((i) => {
-          return (
-            <Link key={i.id} to={`/inspection/${i.id}`}>
-              <p>Inspection Date: {i.inspection_date}</p>
-              <p>
-                Technician: {i.workers.first_name} {i.workers.last_name}
-              </p>
-              <p>Notes: {i.notes}</p>
-              <p>Result: {i.has_passed ? "Suitable" : "Not Suitable"}</p>
-            </Link>
-          );
-        })} */}
     </>
   );
 }

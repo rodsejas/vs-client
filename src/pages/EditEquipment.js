@@ -94,6 +94,7 @@ export default function EditEquipment(props) {
 
   const _handleSubmit = async (e) => {
     e.preventDefault();
+    debugger;
     let postData;
 
     const setLifespanTo = (lifespanMonths) => {
