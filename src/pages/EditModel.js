@@ -79,9 +79,8 @@ export default function EditModel(props) {
 
     const url = `${BASE_URL}${BASE_API}/model/${params.id}/edit`;
     try {
-      const { data } = await axios.put(url, postData);
-      const id = data[0].id;
-      navigate(`/model/${id}`);
+      await axios.put(url, postData);
+      navigate(`/models`);
     } catch (error) {
       console.log(error);
     }
@@ -166,6 +165,16 @@ export default function EditModel(props) {
                       name="model_name"
                       placeholder="Condor Screw"
                       defaultValue={model.model_name}
+                      onInput={_handleChange}
+                    />
+                  </FormControl>
+                  <FormControl id="manufacturer" isRequired>
+                    <FormLabel>Manufacturer</FormLabel>
+                    <Input
+                      type="text"
+                      name="manufacturer"
+                      placeholder="Ocun"
+                      defaultValue={model.manufacturer}
                       onInput={_handleChange}
                     />
                   </FormControl>

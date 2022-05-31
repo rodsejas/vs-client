@@ -114,12 +114,13 @@ export default function EditEquipment(props) {
     };
 
     const model_id = updatedEquipment.model_id;
-    const selectedModel = models.filter((e) => e.id === model_id);
+    const selectedModel = models.filter((e) => e.id === Number(model_id));
     const lifespanMonths = selectedModel[0].lifespan_from_manufacture;
     const inspectionFrequency = selectedModel[0].inspection_frequency;
 
     if (
-      updatedEquipment.manufacture_date !== currentEquipment.manufacture_date
+      updatedEquipment.manufacture_date !== currentEquipment.manufacture_date ||
+      Number(updatedEquipment.model_id) !== Number(currentEquipment.model_id)
     ) {
       postData = {
         ...updatedEquipment,
