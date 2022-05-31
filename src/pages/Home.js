@@ -1,7 +1,6 @@
 import {
   Container,
   Heading,
-  SimpleGrid,
   Stack,
   Grid,
   Box,
@@ -14,7 +13,6 @@ import {
 } from "@chakra-ui/react";
 import * as React from "react";
 import { Card } from "../components/Card";
-import { Stat } from "../components/Stat";
 import {
   FacebookIcon,
   TwitterIcon,
@@ -22,33 +20,6 @@ import {
 } from "../components/SocialIcons";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { FiUsers, FiCalendar, FiDelete, FiDatabase } from "react-icons/fi";
-
-const stats = [
-  {
-    label: "Asset Availability",
-    value: "86.70%",
-    delta: {
-      value: "3.2%",
-      isUpwardsTrend: true,
-    },
-  },
-  {
-    label: "Assets Due For Inspection",
-    value: "11",
-    delta: {
-      value: "5%",
-      isUpwardsTrend: true,
-    },
-  },
-  {
-    label: "Schedule Compliance",
-    value: "93%",
-    delta: {
-      value: "2.1%",
-      isUpwardsTrend: false,
-    },
-  },
-];
 
 const Home = () => {
   return (
@@ -85,24 +56,6 @@ const Home = () => {
               </Heading>
               <Text color="muted">Next steps at a glance</Text>
             </Stack>
-          </Stack>
-          <Stack
-            spacing={{
-              base: "5",
-              lg: "6",
-            }}
-          >
-            <SimpleGrid
-              columns={{
-                base: 1,
-                md: 3,
-              }}
-              gap="6"
-            >
-              {stats.map((stat, id) => (
-                <Stat key={id} {...stat} />
-              ))}
-            </SimpleGrid>
           </Stack>
           <Card minH="sm">
             <Grid
@@ -289,13 +242,13 @@ const Home = () => {
                   </Box>
                   <Box h="130">
                     <Text fontSize="lg" fontWeight="medium" align="left" mb="3">
-                      Training
+                      Categorisation
                     </Text>
                     <Text color="muted" fontSize="sm" noOfLines={3}>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Rem nam earum, sed odit iusto enim, voluptatibus modi
-                      perspiciatis esse voluptas repellat atque possimus minima
-                      quam reiciendis aperiam voluptatem illum fugiat.
+                      Broad categorisation across inputs. Equipment type
+                      categories and filtering, as well as the use of reusable
+                      tags. Ability to view models by brands or type categories,
+                      and the use of user-mainted, connected catalogues.
                     </Text>
                   </Box>
                 </VStack>

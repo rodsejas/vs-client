@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL, BASE_API } from "../Constants";
 import { supabase } from "../supabase";
+import { EditIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -21,7 +22,6 @@ import {
   InputRightAddon,
   Image,
 } from "@chakra-ui/react";
-import { FiPlus } from "react-icons/fi";
 
 export default function EditModel(props) {
   const [model, setModel] = useState({});
@@ -257,9 +257,10 @@ export default function EditModel(props) {
                         </>
                       ) : (
                         <Image
-                          src="https://via.placeholder.com/300"
+                          src="https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/vs/placeholders/no-image-placeholder.png?t=2022-05-31T10%3A04%3A18.696Z"
                           alt="model-img"
                           boxSize="300"
+                          borderRadius="lg"
                         />
                       )}
                     </Box>
@@ -274,10 +275,9 @@ export default function EditModel(props) {
                           rel="noopener noreferrer" // added to remove warnings related to target=_blank
                         >
                           <Image
-                            alt="thumbanil-files"
-                            src="https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/vs/thumbnails/file-thumbnail.png"
+                            src="https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/vs/placeholders/pdf-download.png?t=2022-05-31T09%3A54%3A32.423Z"
                             boxSize="300"
-                            fallbackSrc="https://via.placeholder.com/300"
+                            borderRadius="lg"
                           />
                           {model.manual.split("").slice(24).join("")}{" "}
                         </a>
@@ -286,9 +286,9 @@ export default function EditModel(props) {
                       </>
                     ) : (
                       <Image
-                        alt="thumbanil-files"
                         boxSize="300"
-                        src="https://via.placeholder.com/300"
+                        src="https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/vs/placeholders/no-manual-placeholder.png?t=2022-05-31T10%3A03%3A09.638Z"
+                        borderRadius="lg"
                       />
                     )}
                   </FormControl>
@@ -336,7 +336,7 @@ export default function EditModel(props) {
                 <Button
                   type="submit"
                   variant="primary"
-                  rightIcon={<FiPlus />}
+                  rightIcon={<EditIcon />}
                   onClick={_handleSubmit}
                 >
                   Update

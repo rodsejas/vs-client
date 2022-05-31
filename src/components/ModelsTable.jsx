@@ -59,11 +59,15 @@ const ModelsTable = (props) => {
           <Tr key={m.id}>
             <Td>
               <HStack spacing="3">
-                <Avatar
-                  src={`https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/${m.image}`}
-                  bg="red.500"
-                  // icon={<AiOutlineUser fontSize="1.5rem" />}
-                />
+                <Link
+                  href={`https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/${m.image}`}
+                  isExternal
+                >
+                  <Avatar
+                    src={`https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/${m.image}`}
+                  />
+                </Link>
+
                 <Box>
                   <Text fontWeight="medium">{m.model_name}</Text>
                   <Text color="muted">{m.manufacturer}</Text>
