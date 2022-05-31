@@ -20,18 +20,6 @@ export default function Workers() {
   }, []);
 
   return (
-    // <div>
-    //   {workers.map((worker) => {
-    //     return (
-    //       <Link key={worker.id} to={`/worker/${worker.id}`}>
-    //         <div>
-    //           <h2>{worker.first_name}</h2>
-    //           <p>{worker.last_name}</p>
-    //         </div>
-    //       </Link>
-    //     );
-    //   })}
-    // </div>
     <Box
       bg={useColorModeValue("gray.100", "gray.800")}
       px={{ base: "6", md: "8" }}

@@ -12,7 +12,7 @@ import {
   Stack,
   Text,
   useBreakpointValue,
-  useColorModeValue,
+  Skeleton,
 } from "@chakra-ui/react";
 import { FiPlus } from "react-icons/fi";
 import ModelsTable from "../components/ModelsTable";
@@ -27,28 +27,15 @@ export default function Models() {
 
   useEffect(() => {
     fetchModels();
-  }, []);
+  }, [models]);
 
   const isMobile = useBreakpointValue({
     base: true,
     md: false,
   });
 
-  return (
-    <>
-      {/* <Link to={`/model/create`}>
-        <button>Create new model</button>
-      </Link>
-
-      {models.map((m) => {
-        return (
-          <Link key={m.id} to={`/model/${m.id}`}>
-            <div>
-              <h2>{m.model_name}</h2>
-            </div>
-          </Link>
-        );
-      })} */}
+  if (models.length !== 0) {
+    return (
       <>
         <Container
           py={{
@@ -64,12 +51,12 @@ export default function Models() {
             bg="bg-surface"
             boxShadow={{
               base: "none",
-              md: useColorModeValue("sm", "sm-dark"),
+              md: "sm",
             }}
-            borderRadius={useBreakpointValue({
+            borderRadius={{
               base: "none",
               md: "lg",
-            })}
+            }}
           >
             <Stack spacing="5">
               <Box
@@ -131,6 +118,80 @@ export default function Models() {
           </Box>
         </Container>
       </>
-    </>
-  );
+    );
+  } else {
+    return (
+      <div>
+        {/* LOADING TABLE */}
+
+        <Container
+          py={{
+            base: "4",
+            md: "8",
+          }}
+          px={{
+            base: "0",
+            md: 8,
+          }}
+        >
+          <Box
+            bg="bg-surface"
+            boxShadow={{
+              base: "none",
+              md: "sm",
+            }}
+            borderRadius={{
+              base: "none",
+              md: "lg",
+            }}
+          >
+            <Stack spacing="5">
+              <Box
+                px={{
+                  base: "4",
+                  md: "6",
+                }}
+                pt="5"
+              ></Box>
+              <Box overflowX="auto" p="10px">
+                <Stack>
+                  <Skeleton
+                    height="25px"
+                    width="75vw"
+                    startColor="#8fadc9"
+                    endColor="#cadbeb"
+                  />
+                  <Skeleton
+                    height="25px"
+                    width="75vw"
+                    startColor="#8fadc9"
+                    endColor="#cadbeb"
+                  />
+                  <Skeleton
+                    height="25px"
+                    width="75vw"
+                    startColor="#8fadc9"
+                    endColor="#cadbeb"
+                  />
+                  <Skeleton
+                    height="25px"
+                    width="75vw"
+                    startColor="#8fadc9"
+                    endColor="#cadbeb"
+                  />
+                </Stack>
+              </Box>
+              <Box
+                px={{
+                  base: "4",
+                  md: "6",
+                }}
+                pb="5"
+              ></Box>
+            </Stack>
+          </Box>
+        </Container>
+      </div>
+    );
+  }
 }
