@@ -97,7 +97,7 @@ export default function Models() {
                 <HStack spacing="3" justify="space-between">
                   {!isMobile && (
                     <Text color="muted" fontSize="sm">
-                      Showing 1 to 5 of 42 results
+                      Showing {models.length} results
                     </Text>
                   )}
                   <ButtonGroup
