@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { BASE_URL, BASE_API } from "../Constants";
-import { Link } from "react-router-dom";
+import { Link as LinkRoutes } from "react-router-dom";
 import {
   Box,
   Button,
@@ -22,12 +22,14 @@ import {
   StatLabel,
   Badge,
   Image,
+  Avatar,
   ButtonGroup,
   Table,
   Tbody,
   Td,
   Th,
   Thead,
+  Link,
   Tr,
 } from "@chakra-ui/react";
 
@@ -86,15 +88,19 @@ export default function Equipment() {
           direction="row"
         >
           <Box>
-            <Image
-              src="https://www.climbinganchors.com.au/assets/full/OCUNWBQ.jpg?20210309033228"
-              alt="Harness"
-              boxSize="333.25"
-              boxShadow={useColorModeValue("sm", "sm-dark")}
-              objectFit="cover"
-              borderRadius="lg"
-              fallbackSrc="https://via.placeholder.com/300"
-            />
+            {equipment.map((e) => {
+              return (
+                <Image
+                  src={`https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/${e.image}`}
+                  alt="Equipment Image"
+                  boxSize="333.25"
+                  boxShadow="sm"
+                  objectFit="cover"
+                  borderRadius="lg"
+                  fallbackSrc="https://via.placeholder.com/300?text=No+Image+Uploaded"
+                />
+              );
+            })}
           </Box>
           <Box
             as="section"
@@ -123,7 +129,7 @@ export default function Equipment() {
                         <Stack spacing="1">
                           <HStack spacing="4">
                             <Text fontSize="xl" fontWeight="medium">
-                              Ocun {e.models.model_name}
+                              {e.models.manufacturer} {e.models.model_name}
                             </Text>
                             <Badge
                               colorScheme={
@@ -138,9 +144,9 @@ export default function Equipment() {
                           </Text>
                         </Stack>
                         <Stack direction="row" spacing="3">
-                          <Link to={`/equipment/${e.id}/edit`}>
+                          <LinkRoutes to={`/equipment/${e.id}/edit`}>
                             <Button variant="primary">Edit Equipment</Button>
-                          </Link>
+                          </LinkRoutes>
                           <Button colorScheme="red" onClick={_handleDelete}>
                             Delete
                           </Button>
@@ -164,7 +170,9 @@ export default function Equipment() {
                           <StatLabel fontSize="small" color="muted">
                             Manufacturer
                           </StatLabel>
-                          <StatNumber fontSize="large">Ocun</StatNumber>
+                          <StatNumber fontSize="large">
+                            {e.models.manufacturer}
+                          </StatNumber>
                         </Stat>
 
                         <Stat>
@@ -220,7 +228,7 @@ export default function Equipment() {
                             Standards
                           </StatLabel>
                           <StatNumber fontSize="large">
-                            EN 354, EN 795
+                            {e.models.standards}
                           </StatNumber>
                         </Stat>
 
@@ -242,12 +250,6 @@ export default function Equipment() {
                           </StatNumber>
                         </Stat>
                       </StatGroup>
-                      {/* <Divider /> */}
-                      {/* <Link to={`/equipment/${params.id}/inspection/create`}>
-                      <button> New Inspection</button>
-                    </Link> */}
-
-                      {/* INSPECTIONS TABLE */}
                     </>
                   );
                 })}
@@ -297,11 +299,11 @@ export default function Equipment() {
                   <Text fontSize="lg" fontWeight="medium">
                     Record of Inspections
                   </Text>
-                  <Link to={`/equipment/${params.id}/inspection/create`}>
+                  <LinkRoutes to={`/equipment/${params.id}/inspection/create`}>
                     <Button variant="primary" rightIcon={<FiPlus />}>
                       Add New Inspection
                     </Button>
-                  </Link>
+                  </LinkRoutes>
                 </Stack>
               </Box>
 
@@ -319,9 +321,8 @@ export default function Equipment() {
                         </HStack>
                       </Th>
                       <Th>Date of Inspection</Th>
-                      <Th>Serial Number</Th>
-                      <Th>Model</Th>
                       <Th>Technician</Th>
+                      <Th>Notes</Th>
                       <Th>Result</Th>
                       <Th>Photos</Th>
                     </Tr>
@@ -332,14 +333,8 @@ export default function Equipment() {
                         <Td>
                           <HStack spacing="3">
                             <Box>
-                              <Text fontWeight="medium">
-                                MODEL NAME GOES HERE
-                              </Text>
-                              <Text color="muted">
-                                {moment(i.inspection_date).format(
-                                  "MMM Do YYYY"
-                                )}
-                              </Text>
+                              <Text fontWeight="medium">{i.id}</Text>
+                              <Text color="muted">Record ID</Text>
                             </Box>
                           </HStack>
                         </Td>
@@ -349,24 +344,33 @@ export default function Equipment() {
                           </Text>
                         </Td>
                         <Td>
-                          <Text color="muted">{i.serial_num}</Text>
-                        </Td>
-                        <Td>
                           <Text color="muted">
                             {i.workers.first_name} {i.workers.last_name}
                           </Text>
                         </Td>
                         <Td>
-                          <Text color="muted">
-                            <Text color="muted">TEST</Text>
-                          </Text>
+                          <Text color="muted">{i.notes}</Text>
                         </Td>
+
                         <Td>
                           <Badge colorScheme={i.has_passed ? "green" : "red"}>
                             {i.has_passed ? "Passed" : "Failed"}
                           </Badge>
                         </Td>
-                        <Td>Test</Td>
+                        <Td>
+                          {i.image ? (
+                            <Link
+                              href={`https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/${i.image}`}
+                              isExternal
+                            >
+                              <Avatar
+                                src={`https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/${i.image}`}
+                              />
+                            </Link>
+                          ) : (
+                            "No image"
+                          )}
+                        </Td>
                       </Tr>
                     ))}
                   </Tbody>
@@ -382,7 +386,7 @@ export default function Equipment() {
                 <HStack spacing="3" justify="space-between">
                   {!isMobile && (
                     <Text color="muted" fontSize="sm">
-                      Showing 1 to 5 of 42 results
+                      Showing {inspections.length} results
                     </Text>
                   )}
                   <ButtonGroup

@@ -29,7 +29,6 @@ const LoggedInContext = createContext(false);
 
 const RequireLoggedIn = ({ children }) => {
   const isLoggedIn = useContext(LoggedInContext);
-  console.log("Is Logged In", isLoggedIn);
   if (isLoggedIn) {
     return children;
   }
