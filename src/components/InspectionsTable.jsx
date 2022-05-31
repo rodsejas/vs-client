@@ -9,9 +9,12 @@ import {
   Th,
   Thead,
   Tr,
+  Avatar,
+  Link,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { Link } from "react-router-dom";
+import moment from "moment";
+// import { Link } from "react-router-dom";
 
 const InspectionsTable = (props) => {
   const { inspections } = props;
@@ -22,16 +25,16 @@ const InspectionsTable = (props) => {
           <Th>
             <HStack spacing="3">
               <HStack spacing="1">
-                <Text>Inspection Record</Text>
+                <Text>Model</Text>
               </HStack>
             </HStack>
           </Th>
-          <Th>Date</Th>
+          <Th>Date of Inspection</Th>
           <Th>Serial Number</Th>
-          <Th>Model</Th>
           <Th>Technician</Th>
+          <Th>Notes</Th>
           <Th>Result</Th>
-          <Th>Status</Th>
+          <Th>Images</Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -40,17 +43,19 @@ const InspectionsTable = (props) => {
             <Td>
               <HStack spacing="3">
                 <Box>
-                  <Link key={i.id} to={`/inspection/${i.id}`}>
-                    <Text fontWeight="medium">
-                      {i.equipments.models.model_name}
-                    </Text>
-                    <Text color="muted">{i.inspection_date}</Text>
-                  </Link>
+                  <Text fontWeight="medium">
+                    {i.equipments.models.model_name}
+                  </Text>
+                  <Text color="muted">
+                    {moment(i.inspection_date).format("MMM Do YYYY")}
+                  </Text>
                 </Box>
               </HStack>
             </Td>
             <Td>
-              <Text color="muted">{i.inspection_date}</Text>
+              <Text color="muted">
+                {moment(i.inspection_date).format("MMM Do YYYY")}
+              </Text>
             </Td>
             <Td>
               <Text color="muted">{i.equipments.serial_num}</Text>
@@ -62,7 +67,7 @@ const InspectionsTable = (props) => {
             </Td>
             <Td>
               <Text color="muted">
-                <Text color="muted">{i.equipments.models.model_name}</Text>
+                <Text color="muted">{i.notes}</Text>
               </Text>
             </Td>
             <Td>
@@ -70,7 +75,20 @@ const InspectionsTable = (props) => {
                 {i.has_passed ? "Passed" : "Failed"}
               </Badge>
             </Td>
-            <Td>Test</Td>
+            <Td>
+              {i.image ? (
+                <Link
+                  href={`https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/${i.image}`}
+                  isExternal
+                >
+                  <Avatar
+                    src={`https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/${i.image}`}
+                  />
+                </Link>
+              ) : (
+                "No image"
+              )}
+            </Td>
           </Tr>
         ))}
       </Tbody>

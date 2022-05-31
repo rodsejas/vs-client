@@ -13,8 +13,12 @@ import {
   Text,
   useBreakpointValue,
   useColorModeValue,
+  InputGroup,
+  Icon,
+  Input,
+  InputLeftElement,
 } from "@chakra-ui/react";
-// import { FiPlus } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 
 import InspectionsTable from "../components/InspectionsTable";
 
@@ -37,23 +41,6 @@ export default function Inspections() {
 
   return (
     <>
-      {/* {inspections.map((i) => {
-        return (
-          <Link key={i.id} to={`/inspection/${i.id}`}>
-            <div>
-              <p>{i.inspection_date}</p>
-              <p>{i.equipments.serial_num}</p>
-              <p>{i.equipments.models.model_name}</p>
-              <p>
-                {i.workers.first_name} {i.workers.last_name}
-              </p>
-              <p> {i.has_passed ? "Suitable" : "Not suitable"}</p>
-              <p>.............</p>
-            </div>
-          </Link>
-        );
-      })} */}
-
       <Container
         py={{
           base: "4",
@@ -91,8 +78,15 @@ export default function Inspections() {
                 justify="space-between"
               >
                 <Text fontSize="lg" fontWeight="medium">
-                  Inspections
+                  Inspections Overview
                 </Text>
+
+                <InputGroup maxW="xs">
+                  <InputLeftElement pointerEvents="none">
+                    <Icon as={FiSearch} color="muted" boxSize="5" />
+                  </InputLeftElement>
+                  <Input placeholder="Search" />
+                </InputGroup>
               </Stack>
             </Box>
             <Box overflowX="auto">

@@ -87,9 +87,8 @@ export default function NewModel(props) {
 
     const url = `${BASE_URL}${BASE_API}/models`;
     try {
-      const { data } = await axios.post(url, postData);
-      const id = data[0].id;
-      navigate(`/model/${id}`);
+      await axios.post(url, postData);
+      navigate(`/models`);
     } catch (error) {
       console.log(error);
     }
