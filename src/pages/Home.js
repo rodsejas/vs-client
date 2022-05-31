@@ -88,10 +88,10 @@ const Home = () => {
                       Schedule An Inspection
                     </Text>
                     <Text color="muted" fontSize="sm" noOfLines={3}>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Rem nam earum, sed odit iusto enim, voluptatibus modi
-                      perspiciatis esse voluptas repellat atque possimus minima
-                      quam reiciendis aperiam voluptatem illum fugiat.
+                      Scheduling of future inspections for an equipment. Ability
+                      to set custom schedules for inspections and assign it to a
+                      worker. The worker is notified of an upcoming inspection
+                      prior to a week.
                     </Text>
                   </Box>
                 </VStack>
@@ -127,10 +127,11 @@ const Home = () => {
                       Manage Deletion of Associated Inspections
                     </Text>
                     <Text color="muted" fontSize="sm" noOfLines={3}>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Rem nam earum, sed odit iusto enim, voluptatibus modi
-                      perspiciatis esse voluptas repellat atque possimus minima
-                      quam reiciendis aperiam voluptatem illum fugiat.
+                      Deletion of equipment is constrained by foreign key
+                      associations. Adding support to delete all inspection
+                      records of an equipment when the equipment is deleted.
+                      This also extends to deleting all the equipment records
+                      associated with models when the specific model is deleted.
                     </Text>
                   </Box>
                 </VStack>
@@ -166,10 +167,10 @@ const Home = () => {
                       Manage Users
                     </Text>
                     <Text color="muted" fontSize="sm" noOfLines={3}>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Rem nam earum, sed odit iusto enim, voluptatibus modi
-                      perspiciatis esse voluptas repellat atque possimus minima
-                      quam reiciendis aperiam voluptatem illum fugiat.
+                      Introduce form validations at sign up form and capture
+                      metadata (phone number, name, etc). Allow user to edit
+                      email, password, and other details in a settings
+                      dashboard. Ability to invite a worker as an app user.
                     </Text>
                   </Box>
                 </VStack>
@@ -206,10 +207,10 @@ const Home = () => {
                       Create an organisation
                     </Text>
                     <Text color="muted" fontSize="sm" noOfLines={3}>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Rem nam earum, sed odit iusto enim, voluptatibus modi
-                      perspiciatis esse voluptas repellat atque possimus minima
-                      quam reiciendis aperiam voluptatem illum fugiat.
+                      Support for creating organisations with their associated
+                      workers and assets. Extends the ability to invite workers
+                      into an org, and reveal statistics associated with their
+                      maintenance compliance.
                     </Text>
                   </Box>
                 </VStack>
@@ -245,10 +246,9 @@ const Home = () => {
                       Categorisation
                     </Text>
                     <Text color="muted" fontSize="sm" noOfLines={3}>
-                      Broad categorisation across inputs. Equipment type
-                      categories and filtering, as well as the use of reusable
-                      tags. Ability to view models by brands or type categories,
-                      and the use of user-mainted, connected catalogues.
+                      Broad use of categories and reusable tags against
+                      equipment. Support creation of "kits", with use cases such
+                      as confined space rescue, roofer kits, etc.
                     </Text>
                   </Box>
                 </VStack>
