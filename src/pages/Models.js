@@ -27,7 +27,7 @@ export default function Models() {
 
   useEffect(() => {
     fetchModels();
-  }, [models]);
+  }, []);
 
   const isMobile = useBreakpointValue({
     base: true,

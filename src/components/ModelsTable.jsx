@@ -28,7 +28,7 @@ const ModelsTable = (props) => {
     const url = `${BASE_URL}${BASE_API}/model/${id}/`;
     try {
       await axios.delete(url, m);
-      navigate(`/models`);
+      navigate(`/`);
     } catch (error) {
       console.log(error);
     }
