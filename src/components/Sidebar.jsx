@@ -116,11 +116,7 @@ export const Sidebar = (props) => {
             <NavButton label="Help" icon={FiHelpCircle} />
           </Link>
           <Divider borderColor="bg-accent-subtle" />
-          <UserProfile
-            name="Rod Sejas"
-            // image="https://media-exp1.licdn.com/dms/image/C5603AQGmgYNLA-cUIA/profile-displayphoto-shrink_800_800/0/1648760593635?e=1658966400&v=beta&t=6pKE6QGB6Z2MIkH4ZP0SXoQzByx25RMrc3yryiT7kLo"
-            email="rod@vs-app.com"
-          />
+          <UserProfile name="Rod Sejas" email="rodsejas@gmail.com" />
           <Button
             leftIcon={<FiLogOut />}
             colorScheme="whiteAlpha"
