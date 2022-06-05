@@ -9,7 +9,8 @@ You can check out VS [here](https://vs-app.netlify.app/#/signin)
 - username: rodsejas@gmail.com
 - password: chicken
 
-\***\*Collaborators:\*\***
+### Collaborators
+
 
 - [Rod](https://github.com/rodsejas)
 - [Dhaya](https://github.com/Dhaya94)
