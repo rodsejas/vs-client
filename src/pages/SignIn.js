@@ -15,7 +15,6 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import * as React from "react";
-// import { OAuthButtonGroup } from "../components/OAuthButtonGroup";
 // import { PasswordField } from "../components/PasswordField";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
@@ -148,14 +147,6 @@ const SignIn = (props) => {
                 <Button variant="primary" type="submit">
                   Sign in
                 </Button>
-                {/* <HStack>
-                  <Divider />
-                  <Text fontSize="sm" whiteSpace="nowrap" color="muted">
-                    or continue with
-                  </Text>
-                  <Divider />
-                </HStack> */}
-                {/* <OAuthButtonGroup /> */}
               </Stack>
             </Stack>
           </form>

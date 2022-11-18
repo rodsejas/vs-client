@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URL, BASE_API } from "../Constants";
@@ -12,7 +11,6 @@ import {
   Stack,
   Text,
   useBreakpointValue,
-  Skeleton,
 } from "@chakra-ui/react";
 import { FiPlus } from "react-icons/fi";
 import ModelsTable from "../components/ModelsTable";

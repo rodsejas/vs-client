@@ -16,7 +16,6 @@ import {
   Icon,
   Input,
   InputLeftElement,
-  Skeleton,
 } from "@chakra-ui/react";
 import { FiSearch } from "react-icons/fi";
 import LoadingSpinner from "../components/LoadingSpinner";

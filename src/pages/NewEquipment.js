@@ -131,6 +131,8 @@ export default function NewEquipment(props) {
           base: "4",
           md: "8",
         }}
+        flex="1"
+        overflowX="auto"
       >
         <Stack spacing="5" divider={<StackDivider />}>
           <Stack
@@ -144,7 +146,7 @@ export default function NewEquipment(props) {
             }}
             justify="space-between"
           >
-            <Box flexShrink={1}>
+            <Box flexShrink={3} flex="1">
               <Text fontSize="lg" fontWeight="medium">
                 Add Equipment To Inventory
               </Text>
@@ -159,6 +161,7 @@ export default function NewEquipment(props) {
               boxShadow={useColorModeValue("sm", "sm-dark")}
               borderRadius="lg"
               {...props}
+              overflowX="auto"
             >
               <Stack
                 spacing="5"
