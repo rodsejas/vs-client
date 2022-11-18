@@ -14,7 +14,6 @@ import {
   useColorModeValue as mode,
 } from "@chakra-ui/react";
 import { SignUpForm } from "../components/SignUpForm.jsx";
-import React from "react";
 
 export default function SignUp() {
   return (

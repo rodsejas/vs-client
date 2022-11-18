@@ -46,88 +46,90 @@ export const Sidebar = (props) => {
 
   return (
     <Flex
-      flex="2"
-      bg="bg-accent"
-      color="on-accent"
+      as="section"
+      direction={{ base: "column", lg: "row" }}
+      height="100vh"
+      bg="bg-canvas"
       overflowY="auto"
-      maxW={{
-        base: "full",
-        sm: "xs",
-      }}
-      py={{
-        base: "6",
-        sm: "8",
-      }}
-      px={{
-        base: "4",
-        sm: "6",
-      }}
     >
-      <Stack justify="space-between" spacing="1">
-        <Stack
-          spacing={{
-            base: "5",
-            sm: "6",
-          }}
-          shouldWrapChildren
-        >
-          <Box boxSize="8" m="5">
-            <Image
-              src="images/logo.png"
-              alt="Vertical Safety"
-              objectFit="cover"
-            />
-          </Box>
-          <InputGroup>
-            <InputLeftElement pointerEvents="none">
-              <Icon as={FiSearch} color="on-accent" boxSize="5" />
-            </InputLeftElement>
-            <Input placeholder="Search" variant="filled" colorScheme="blue" />
-          </InputGroup>
-          <Stack spacing="1">
-            <Link as={LinkRoutes} to="/">
-              <NavButton label="Home" icon={FiHome} />
-            </Link>
+      <Flex
+        flex="1"
+        bg="bg-accent"
+        color="on-accent"
+        overflowY="auto"
+        maxW={{ base: "full", sm: "xs" }}
+        py={{ base: "6", sm: "8" }}
+        px={{ base: "4", sm: "6" }}
+      >
+        <Stack justify="space-between" spacing="1">
+          <Stack
+            spacing={{
+              base: "5",
+              sm: "6",
+            }}
+            shouldWrapChildren
+          >
+            <Box boxSize="8" m="5">
+              <Image
+                src="images/logo.png"
+                alt="Vertical Safety"
+                objectFit="cover"
+              />
+            </Box>
+            <InputGroup>
+              <InputLeftElement pointerEvents="none">
+                <Icon as={FiSearch} color="on-accent" boxSize="5" />
+              </InputLeftElement>
+              <Input placeholder="Search" variant="filled" colorScheme="blue" />
+            </InputGroup>
+            <Stack spacing="1">
+              <Link as={LinkRoutes} to="/">
+                <NavButton label="Home" icon={FiHome} />
+              </Link>
 
-            <Link as={LinkRoutes} to="/equipments">
-              <NavButton label="Equipment" icon={FiTool} />
-            </Link>
+              <Link as={LinkRoutes} to="/equipments">
+                <NavButton label="Equipment" icon={FiTool} />
+              </Link>
 
-            <Link as={LinkRoutes} to="/workers">
-              <NavButton label="Workers" icon={FiUsers} />
-            </Link>
+              <Link as={LinkRoutes} to="/workers">
+                <NavButton label="Workers" icon={FiUsers} />
+              </Link>
 
-            <Link as={LinkRoutes} to="/inspections">
-              <NavButton label="Inspections" icon={FiCheckSquare} />
-            </Link>
+              <Link as={LinkRoutes} to="/inspections">
+                <NavButton label="Inspections" icon={FiCheckSquare} />
+              </Link>
 
-            <Link as={LinkRoutes} to="/models">
-              <NavButton label="Models" icon={FiLayers} />
+              <Link as={LinkRoutes} to="/models">
+                <NavButton label="Models" icon={FiLayers} />
+              </Link>
+            </Stack>
+          </Stack>
+          <Stack
+            spacing={{
+              base: "5",
+              sm: "6",
+            }}
+          >
+            <Link
+              href="https://github.com/rodsejas/vs-client#readme"
+              isExternal
+            >
+              <NavButton label="Help" icon={FiHelpCircle} />
             </Link>
+            <Divider borderColor="bg-accent-subtle" />
+            <UserProfile name="Rod Sejas" email="rodsejas@gmail.com" />
+            <Button
+              leftIcon={<FiLogOut />}
+              colorScheme="whiteAlpha"
+              variant="solid"
+              button
+              onClick={_handleLogout}
+            >
+              Log Out
+            </Button>
           </Stack>
         </Stack>
-        <Stack
-          spacing={{
-            base: "5",
-            sm: "6",
-          }}
-        >
-          <Link href="https://github.com/rodsejas/vs-client#readme" isExternal>
-            <NavButton label="Help" icon={FiHelpCircle} />
-          </Link>
-          <Divider borderColor="bg-accent-subtle" />
-          <UserProfile name="Rod Sejas" email="rodsejas@gmail.com" />
-          <Button
-            leftIcon={<FiLogOut />}
-            colorScheme="whiteAlpha"
-            variant="solid"
-            button
-            onClick={_handleLogout}
-          >
-            Log Out
-          </Button>
-        </Stack>
-      </Stack>
+      </Flex>
     </Flex>
   );
 };
