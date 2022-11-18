@@ -14,10 +14,9 @@ import * as React from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
-const EquipmentsTable = (props) => {
-  const { equipments } = props;
+const EquipmentsTable = ({ equipments }) => {
   return (
-    <Table {...props}>
+    <Table>
       <Thead>
         <Tr>
           <Th>

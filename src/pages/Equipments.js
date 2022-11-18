@@ -13,6 +13,7 @@ import {
   Text,
   useBreakpointValue,
   Skeleton,
+  Spinner,
 } from "@chakra-ui/react";
 import { FiPlus } from "react-icons/fi";
 import EquipmentsTable from "../components/EquipmentsTable";
@@ -124,71 +125,19 @@ export default function Equipments() {
         {/* LOADING TABLE */}
 
         <Container
-          py={{
-            base: "4",
-            md: "8",
-          }}
+          py={{ base: "4", md: "8" }}
           px={{
             base: "0",
             md: 8,
           }}
         >
-          <Box
-            bg="bg-surface"
-            boxShadow={{
-              base: "none",
-              md: "sm",
-            }}
-            borderRadius={{
-              base: "none",
-              md: "lg",
-            }}
-          >
-            <Stack spacing="5">
-              <Box
-                px={{
-                  base: "4",
-                  md: "6",
-                }}
-                pt="5"
-              ></Box>
-              <Box overflowX="auto" p="10px">
-                <Stack>
-                  <Skeleton
-                    height="25px"
-                    width="60vw"
-                    startColor="#8fadc9"
-                    endColor="#cadbeb"
-                  />
-                  <Skeleton
-                    height="25px"
-                    width="60vw"
-                    startColor="#8fadc9"
-                    endColor="#cadbeb"
-                  />
-                  <Skeleton
-                    height="25px"
-                    width="60vw"
-                    startColor="#8fadc9"
-                    endColor="#cadbeb"
-                  />
-                  <Skeleton
-                    height="25px"
-                    width="60vw"
-                    startColor="#8fadc9"
-                    endColor="#cadbeb"
-                  />
-                </Stack>
-              </Box>
-              <Box
-                px={{
-                  base: "4",
-                  md: "6",
-                }}
-                pb="5"
-              ></Box>
-            </Stack>
-          </Box>
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
         </Container>
       </div>
     );
