@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { FiPlus } from "react-icons/fi";
 import EquipmentsTable from "../components/EquipmentsTable";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function Equipments() {
   const [equipments, setEquipments] = useState([]);
@@ -47,6 +48,8 @@ export default function Equipments() {
             base: "0",
             md: 8,
           }}
+          flex="1"
+          overflowX="auto"
         >
           <Box
             bg="bg-surface"
@@ -120,26 +123,6 @@ export default function Equipments() {
       </>
     );
   } else {
-    return (
-      <div>
-        {/* LOADING TABLE */}
-
-        <Container
-          py={{ base: "4", md: "8" }}
-          px={{
-            base: "0",
-            md: 8,
-          }}
-        >
-          <Spinner
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
-          />
-        </Container>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 }
