@@ -75,12 +75,6 @@ export const Sidebar = (props) => {
                 objectFit="cover"
               />
             </Box>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <Icon as={FiSearch} color="on-accent" boxSize="5" />
-              </InputLeftElement>
-              <Input placeholder="Search" variant="filled" colorScheme="blue" />
-            </InputGroup>
             <Stack spacing="1">
               <Link as={LinkRoutes} to="/">
                 <NavButton label="Home" icon={FiHome} />
