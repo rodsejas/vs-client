@@ -1,28 +1,12 @@
-import {
-  HStack,
-  Icon,
-  Text,
-  useColorModeValue,
-  VStack,
-} from "@chakra-ui/react";
-import * as React from "react";
-import { HiBadgeCheck } from "react-icons/hi";
+import { HStack, Text, useColorModeValue, VStack } from "@chakra-ui/react";
 
-export const UserInfo = (props) => {
-  const { first_name, last_name, isVerified, bio, ...stackProps } = props;
+export const UserInfo = ({ first_name, last_name, bio, ...stackProps }) => {
   return (
     <VStack spacing="1" flex="1" {...stackProps}>
       <HStack>
         <Text fontWeight="bold">
           {first_name} {last_name}
         </Text>
-        {isVerified && (
-          <Icon
-            as={HiBadgeCheck}
-            color="blue.300"
-            verticalAlign="text-bottom"
-          />
-        )}
       </HStack>
       <Text
         fontSize="sm"

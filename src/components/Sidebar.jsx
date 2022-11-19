@@ -10,7 +10,6 @@ import {
   Image,
   Box,
   Button,
-  Kbd,
 } from "@chakra-ui/react";
 import {
   FiTool,
