@@ -2,9 +2,6 @@ import { Icon } from "@chakra-ui/icons";
 import {
   Divider,
   Flex,
-  Input,
-  InputGroup,
-  InputLeftElement,
   Stack,
   Link,
   Image,
@@ -17,7 +14,6 @@ import {
   FiCheckSquare,
   FiHelpCircle,
   FiHome,
-  FiSearch,
   FiUsers,
   FiLogOut,
 } from "react-icons/fi";
