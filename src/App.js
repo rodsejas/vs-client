@@ -68,6 +68,7 @@ function App() {
     <LoggedInContext.Provider value={isLoggedIn}>
       <div className="App">
         <Router>
+          {/* Todo: Remove flex section from App.js, should render inside Sidebar only */}
           <Flex
             as="section"
             direction={{

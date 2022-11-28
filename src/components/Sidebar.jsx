@@ -6,6 +6,10 @@ import {
   Image,
   Box,
   Button,
+  Icon,
+  InputGroup,
+  InputLeftElement,
+  Input,
 } from "@chakra-ui/react";
 import {
   FiTool,
@@ -15,6 +19,7 @@ import {
   FiHome,
   FiUsers,
   FiLogOut,
+  FiSearch,
 } from "react-icons/fi";
 import { NavButton } from "./NavButton";
 import { UserProfile } from "./UserProfile";
@@ -40,6 +45,10 @@ export const Sidebar = (props) => {
     }
     console.log(error);
   };
+
+  {
+    /* Todo: Remove flex section below from component, duplicated in App.js */
+  }
 
   return (
     <Flex
@@ -73,6 +82,12 @@ export const Sidebar = (props) => {
                 objectFit="cover"
               />
             </Box>
+            <InputGroup>
+              <InputLeftElement pointerEvents="none">
+                <Icon as={FiSearch} color="on-accent" boxSize="5" />
+              </InputLeftElement>
+              <Input placeholder="Search" variant="filled" colorScheme="blue" />
+            </InputGroup>
             <Stack spacing="1">
               <Link as={LinkRoutes} to="/">
                 <NavButton label="Home" icon={FiHome} />
