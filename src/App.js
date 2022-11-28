@@ -26,6 +26,7 @@ import { Sidebar } from "./components/Sidebar";
 import { Navbar } from "./components/Navbar.jsx";
 
 const LoggedInContext = createContext(false);
+export const UserContext = createContext({});
 
 const RequireLoggedIn = ({ children }) => {
   const isLoggedIn = useContext(LoggedInContext);
@@ -39,10 +40,24 @@ const checkLocalStorageToken = () => {
   return Boolean(localStorage.getItem("supabase.auth.token"));
 };
 
+const getUserMetadata = () => {
+  if (Boolean(localStorage.getItem("supabase.auth.token"))) {
+    const token = JSON.parse(localStorage.getItem("supabase.auth.token"));
+    const { email, phone } = token.currentSession.user;
+    return {
+      email,
+      phone,
+    };
+  }
+  return {};
+};
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     return checkLocalStorageToken();
   });
+
+  const [user, setUser] = useState(() => getUserMetadata());
 
   const isDesktop = useBreakpointValue({
     base: false,
@@ -63,7 +78,13 @@ function App() {
             bg="bg-canvas"
             overflowY="auto"
           >
-            {isDesktop ? <Sidebar setIsLoggedIn={setIsLoggedIn} /> : <Navbar />}
+            {isDesktop ? (
+              <UserContext.Provider value={user}>
+                <Sidebar setIsLoggedIn={setIsLoggedIn} />
+              </UserContext.Provider>
+            ) : (
+              <Navbar />
+            )}
 
             <Routes>
               <Route
@@ -185,7 +206,9 @@ function App() {
                   isLoggedIn ? (
                     <Navigate to="/" />
                   ) : (
-                    <SignIn setIsLoggedIn={setIsLoggedIn} />
+                    <UserContext.Provider setUser={setUser}>
+                      <SignIn setIsLoggedIn={setIsLoggedIn} />
+                    </UserContext.Provider>
                   )
                 }
               />

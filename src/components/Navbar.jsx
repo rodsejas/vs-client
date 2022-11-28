@@ -7,7 +7,6 @@ import {
   useDisclosure,
   Image,
 } from "@chakra-ui/react";
-import * as React from "react";
 import { Sidebar } from "./Sidebar";
 import { useLocation } from "react-router-dom";
 import { ToggleButton } from "./ToggleButton";

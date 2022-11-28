@@ -44,6 +44,7 @@ const SignIn = (props) => {
       props.setIsLoggedIn(true);
       navigate("/");
     }
+
     console.log({ user, session, error });
   };
 

@@ -1,4 +1,3 @@
-import { Icon } from "@chakra-ui/icons";
 import {
   Divider,
   Flex,
@@ -22,10 +21,13 @@ import { UserProfile } from "./UserProfile";
 import { Link as LinkRoutes } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { supabase } from "../supabase";
-
+import { useContext } from "react";
+import { UserContext } from "../App";
 const withoutSidebarRoutes = ["/signin", "/signup"];
 
 export const Sidebar = (props) => {
+  const { email, phone } = useContext(UserContext);
+
   const { pathname } = useLocation();
 
   if (withoutSidebarRoutes.some((item) => pathname.includes(item))) return null;
@@ -106,7 +108,7 @@ export const Sidebar = (props) => {
               <NavButton label="Help" icon={FiHelpCircle} />
             </Link>
             <Divider borderColor="bg-accent-subtle" />
-            <UserProfile name="Rod Sejas" email="rodsejas@gmail.com" />
+            <UserProfile name="Rod Sejas" email={email} />
             <Button
               leftIcon={<FiLogOut />}
               colorScheme="whiteAlpha"
