@@ -1,36 +1,38 @@
-import { Icon } from "@chakra-ui/icons";
 import {
   Divider,
   Flex,
-  Input,
-  InputGroup,
-  InputLeftElement,
   Stack,
   Link,
   Image,
   Box,
   Button,
+  Icon,
+  InputGroup,
+  InputLeftElement,
+  Input,
 } from "@chakra-ui/react";
-import * as React from "react";
 import {
   FiTool,
   FiLayers,
   FiCheckSquare,
   FiHelpCircle,
   FiHome,
-  FiSearch,
   FiUsers,
   FiLogOut,
+  FiSearch,
 } from "react-icons/fi";
 import { NavButton } from "./NavButton";
 import { UserProfile } from "./UserProfile";
 import { Link as LinkRoutes } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { supabase } from "../supabase";
-
+import { useContext } from "react";
+import { UserContext } from "../App";
 const withoutSidebarRoutes = ["/signin", "/signup"];
 
 export const Sidebar = (props) => {
+  const { email } = useContext(UserContext);
+
   const { pathname } = useLocation();
 
   if (withoutSidebarRoutes.some((item) => pathname.includes(item))) return null;
@@ -43,6 +45,8 @@ export const Sidebar = (props) => {
     }
     console.log(error);
   };
+
+  // Todo: Remove flex section below from component, duplicated in App.js
 
   return (
     <Flex
@@ -117,7 +121,7 @@ export const Sidebar = (props) => {
               <NavButton label="Help" icon={FiHelpCircle} />
             </Link>
             <Divider borderColor="bg-accent-subtle" />
-            <UserProfile name="Rod Sejas" email="rodsejas@gmail.com" />
+            <UserProfile name="Rod Sejas" email={email} />
             <Button
               leftIcon={<FiLogOut />}
               colorScheme="whiteAlpha"

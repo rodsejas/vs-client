@@ -87,7 +87,6 @@ export default function NewInspection(props) {
       console.log(error);
     }
 
-    // // uploading inspection image to supabase "inspection" bucket
     let imageData;
 
     if (image) {

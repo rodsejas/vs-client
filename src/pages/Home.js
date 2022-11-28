@@ -2,37 +2,12 @@ import {
   Container,
   Heading,
   Stack,
-  Image,
   SimpleGrid,
   Text,
-  Box,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import * as React from "react";
-import { Card } from "../components/Card";
-import { FiUsers, FiCalendar, FiDelete, FiDatabase } from "react-icons/fi";
-
-function Feature({ title, desc, icon, imgSrc, ...rest }) {
-  return (
-    <Card p={5} shadow="md" borderWidth="1px" {...rest}>
-      <Box
-        borderRadius="lg"
-        backgroundColor="gray.200"
-        display="flex"
-        p="0.25rem"
-        width="12"
-        height="12"
-        aria-label={title}
-      >
-        <Image src={imgSrc} />
-      </Box>
-      <Heading fontSize="xl" lineHeight="2rem" paddingTop="1rem">
-        {title}
-      </Heading>
-      <Text mt={4}>{desc}</Text>
-    </Card>
-  );
-}
+import Feature from "../components/Feature";
 
 const Home = () => {
   return (
@@ -93,7 +68,7 @@ const Home = () => {
             imgSrc="https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/vs/icons/icons8-search-property-96.png?t=2022-11-18T05%3A12%3A31.662Z"
           />
           <Feature
-            title="Photo documentation"
+            title="Photo documentation."
             desc="The image visualization of each product makes the job and equipment identification easier for users, inspectors and other staff."
             imgSrc="https://icxujcstmvzimkufacay.supabase.co/storage/v1/object/public/vs/icons/icons8-collectibles-96.png?t=2022-11-18T05%3A18%3A12.435Z"
           />

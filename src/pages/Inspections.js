@@ -16,10 +16,9 @@ import {
   Icon,
   Input,
   InputLeftElement,
-  Skeleton,
 } from "@chakra-ui/react";
 import { FiSearch } from "react-icons/fi";
-
+import LoadingSpinner from "../components/LoadingSpinner";
 import InspectionsTable from "../components/InspectionsTable";
 
 export default function Inspections() {
@@ -51,6 +50,8 @@ export default function Inspections() {
             base: "0",
             md: 8,
           }}
+          flex="1"
+          overflowX="auto"
         >
           <Box
             bg="bg-surface"
@@ -126,78 +127,6 @@ export default function Inspections() {
       </>
     );
   } else {
-    return (
-      <div>
-        {/* LOADING TABLE */}
-
-        <Container
-          py={{
-            base: "4",
-            md: "8",
-          }}
-          px={{
-            base: "0",
-            md: 8,
-          }}
-        >
-          <Box
-            bg="bg-surface"
-            boxShadow={{
-              base: "none",
-              md: "sm",
-            }}
-            borderRadius={{
-              base: "none",
-              md: "lg",
-            }}
-          >
-            <Stack spacing="5">
-              <Box
-                px={{
-                  base: "4",
-                  md: "6",
-                }}
-                pt="5"
-              ></Box>
-              <Box overflowX="auto" p="10px">
-                <Stack>
-                  <Skeleton
-                    height="25px"
-                    width="60vw"
-                    startColor="#8fadc9"
-                    endColor="#cadbeb"
-                  />
-                  <Skeleton
-                    height="25px"
-                    width="60vw"
-                    startColor="#8fadc9"
-                    endColor="#cadbeb"
-                  />
-                  <Skeleton
-                    height="25px"
-                    width="60vw"
-                    startColor="#8fadc9"
-                    endColor="#cadbeb"
-                  />
-                  <Skeleton
-                    height="25px"
-                    width="60vw"
-                    startColor="#8fadc9"
-                    endColor="#cadbeb"
-                  />
-                </Stack>
-              </Box>
-              <Box
-                px={{
-                  base: "4",
-                  md: "6",
-                }}
-                pb="5"
-              ></Box>
-            </Stack>
-          </Box>
-        </Container>
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 }
