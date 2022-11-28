@@ -46,9 +46,7 @@ export const Sidebar = (props) => {
     console.log(error);
   };
 
-  {
-    /* Todo: Remove flex section below from component, duplicated in App.js */
-  }
+  // Todo: Remove flex section below from component, duplicated in App.js
 
   return (
     <Flex
