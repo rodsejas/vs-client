@@ -12,8 +12,6 @@ import {
   Stack,
   Text,
   useBreakpointValue,
-  Skeleton,
-  Spinner,
 } from "@chakra-ui/react";
 import { FiPlus } from "react-icons/fi";
 import EquipmentsTable from "../components/EquipmentsTable";

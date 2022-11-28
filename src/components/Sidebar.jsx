@@ -31,7 +31,7 @@ import { UserContext } from "../App";
 const withoutSidebarRoutes = ["/signin", "/signup"];
 
 export const Sidebar = (props) => {
-  const { email, phone } = useContext(UserContext);
+  const { email } = useContext(UserContext);
 
   const { pathname } = useLocation();
 

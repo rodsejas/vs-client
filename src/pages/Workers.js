@@ -9,14 +9,13 @@ import LoadingSpinner from "../components/LoadingSpinner";
 export default function Workers() {
   const [workers, setWorkers] = useState([]);
   const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
 
   const fetchWorkers = () => {
     axios
       .get(`${BASE_URL}${BASE_API}/workers`)
       .then((res) => setWorkers(res.data))
       .catch((err) => setError(err.message))
-      .finally(setIsLoading(false));
+      .then(console.log(error));
   };
 
   useEffect(() => {
