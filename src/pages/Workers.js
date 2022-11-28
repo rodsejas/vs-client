@@ -10,16 +10,16 @@ export default function Workers() {
   const [workers, setWorkers] = useState([]);
   const [error, setError] = useState("");
 
-  const fetchWorkers = () => {
-    axios
-      .get(`${BASE_URL}${BASE_API}/workers`)
-      .then((res) => setWorkers(res.data))
-      .catch((err) => setError(err.message))
-      .then(console.log(error));
-  };
-
   useEffect(() => {
+    const fetchWorkers = () => {
+      axios
+        .get(`${BASE_URL}${BASE_API}/workers`)
+        .then((res) => setWorkers(res.data))
+        .catch((err) => setError(err.message))
+        .then(console.log(error));
+    };
     fetchWorkers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (workers.length === 0) {
