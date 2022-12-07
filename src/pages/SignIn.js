@@ -1,4 +1,6 @@
 import {
+  Alert,
+  AlertIcon,
   Box,
   Button,
   Checkbox,
@@ -21,8 +23,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "../supabase";
 
 const SignIn = (props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("rodsejas@gmail.com");
+  const [password, setPassword] = useState("chicken");
 
   const navigate = useNavigate();
 
@@ -92,6 +94,17 @@ const SignIn = (props) => {
                 </Button>
               </Link>
             </HStack>
+            <Alert
+              status="info"
+              borderRadius="5"
+              textAlign="left"
+              fontSize="sm"
+              textColor="#31708f"
+            >
+              <AlertIcon />
+              Email: rodsejas@gmail.com
+              <br /> Password: chicken
+            </Alert>
           </Stack>
         </Stack>
         <Box
