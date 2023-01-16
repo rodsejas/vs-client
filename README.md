@@ -56,9 +56,6 @@ This application is designed to assist in the creation and maintenance of equipm
 - [![Chakra UI][chakra]][chakra-url]
 - [![Express.js][express]][express-url]
 - [![Supabase][supabase]][supabase]
-
-## Notable Mentions
-
 - Axios
 - React Router
 - Moment.js
