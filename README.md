@@ -52,14 +52,13 @@ This application is designed to assist in the creation and maintenance of equipm
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
 - [![React][react.js]][react-url]
 - [![Chakra UI][chakra]][chakra-url]
 - [![Express.js][express]][express-url]
 - [![Supabase][supabase]][supabase]
 
-- Postgres
+## Notable Mentions
+
 - Axios
 - React Router
 - Moment.js
@@ -122,8 +121,6 @@ The project was kicked-off with brainstorming the core features of the app, deve
 - [ ] Add support for row-level security in database.
 - [ ] Add support for emailed weekly summary report.
 - [ ] File export support to PDF and XLS.
-
-See the [open issues](https://github.com/rodsejas/vs-client/issues) for a full list of proposed features and known issues.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
