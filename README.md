@@ -47,6 +47,7 @@ This application is designed to assist in the creation and maintenance of equipm
 - [![React][react.js]][react-url]
 - [![Chakra UI][chakra]][chakra-url]
 - [![Express.js][express]][express-url]
+- [![PostgreSQL][postgres]][postgres-url]
 - [![Supabase][supabase]][supabase]
 
 #### Notable Libraries Used
@@ -146,3 +147,5 @@ Project Link: [https://github.com/rodsejas/vs-client](https://github.com/rodseja
 [chakra-url]: https://chakra-ui.com/
 [express]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
 [express-url]: https://expressjs.com/
+[postgres]: https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white
+[postgres-url]: https://www.postgresql.org/
