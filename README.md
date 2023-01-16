@@ -56,6 +56,9 @@ This application is designed to assist in the creation and maintenance of equipm
 - [![Chakra UI][chakra]][chakra-url]
 - [![Express.js][express]][express-url]
 - [![Supabase][supabase]][supabase]
+
+#### Notable Libraries Used
+
 - Axios
 - React Router
 - Moment.js
@@ -138,18 +141,13 @@ Project Link: [https://github.com/rodsejas/vs-client](https://github.com/rodseja
 
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/rodsejas/vs-client/graphs/contributors
-
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
 [issues-url]: https://github.com/rodsejas/vs-client/issues
-
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/rodsejas/
-
 [product-screenshot]: images/screenshot.png
-
 [react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [react-url]: https://reactjs.org/
-
 [postgresql]: https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white
 [supabase]: https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white
 [chakra]: https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white
