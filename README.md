@@ -49,8 +49,6 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 Vertical Safety is a platform that allows companies and users to conduct regular inspections on Personal Protective Equipment (PPE), with a specialisation on fall protection. The inspection and maintenance of this equipment is critical to the life safety of workers who rely on the equipment to perform their jobs.
 
 This application is designed to assist in the creation and maintenance of equipment registration and inspection records, aiding users in meeting their legal obligations per the Australian Standards (AS/NZS 1891).
